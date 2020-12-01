@@ -1,0 +1,283 @@
+.container-fluid {
+    /* background-image: url('2.jpg'); */
+    background-image: url(https://cms-web.olacabs.com/00000000384.jpg);
+    background-size: cover;
+    background-position: center;
+    /* opacity: 0.9; */
+}
+.container {
+    top: 50px;
+    text-align: center;
+    color: teal;
+    font-weight: bold;
+}
+.display-4 {
+    padding: 19px;
+    font-size: 50px;
+    text-shadow: -1px -3px 0px #dff1f1;
+    font-family: 'Josefin Slab', serif;
+    font-family: 'Monoton', cursive;
+    font-family: 'Sansita Swashed', cursive;
+}
+.headpara {
+    font-size: 25px;
+    margin-top: -25px;
+    /* color: white; */
+    text-shadow: -1px -2px 0px #dff1f1;
+    font-family: 'Josefin Slab', serif;
+    font-family: 'Monoton', cursive;
+    font-family: 'Sansita Swashed', cursive;
+    letter-spacing: 2px;
+    word-spacing: 6px;
+    text-transform: uppercase;
+}
+.card {
+    margin-top: 50px;
+    margin-bottom: 60px;
+}
+.card-body h6 {
+    margin-bottom: 15px;
+}
+.card #header {
+    background: #dbff4b;
+    padding: 9px 24px;
+    border-radius: 21px;
+}
+.card-title {
+    font-weight: bold !important;
+    margin-bottom: 2px;
+} 
+.card .card-body a {
+    background-color: #c3ea27;
+    color: black;
+    font-size: 19px;
+}
+input, select:focus {
+    outline: none !important;
+}
+.g{
+    -webkit-appearance: none;
+    background-color: #e9ecef;
+    border:none;
+}
+input[type='text'] {
+    background-color: #e9ecef;
+    border: none;
+}
+.g:focus {
+    box-shadow: none;
+    background-color: #e9ecef;
+}
+.card-body a:focus {
+    box-shadow: none;
+}
+input[type='text']:focus {
+    box-shadow: none;
+    background-color: #e9ecef;
+}
+.input-group-text {
+    border: none;
+    font-size: 10px;
+    width: 80px;
+}
+.navbar-brand {
+    color: #c3ea27 !important;
+    font-size: 29px;
+}
+.navbar {
+    padding: 10px;
+}
+.nav-link {
+    color: black !important;
+}
+.brandspan {
+    color: black;
+}
+footer {
+    background: #393939;
+    overflow: hidden;
+}
+footer a{
+    display: block;
+    color: white;
+    font-size: 15px;
+}
+footer a:hover {
+    color: white;
+}
+footer h3 {
+    color: white;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+}
+.lead {
+    color: white;
+    font-size: 15px;
+    margin-top: 30px;
+}
+footer .firstrow {
+    border-bottom: 2px solid gray;
+}
+footer .row {
+    padding: 10px;
+    color: white;
+}
+footer .firstrow i {
+    padding: 13px;
+    border: 1px solid black;
+    background: black;
+    /* color: black !important; */
+    border-radius: 50%;
+    margin-top: 30px;
+    margin-left: 12px;
+}
+footer .row .navbar-brand {
+    font-size: 15px;
+}
+@media only screen and (max-width: 1024px) {
+    .display-4 {
+        font-size: 40px;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .headpara {
+        display: none;
+    }
+    .display-4 {
+        font-size: 34px;
+    }
+    .card {
+        margin-top: 0px;
+    }
+    footer .firstrow {
+        padding-left: 0px !important;
+    }
+}
+@media only screen and (max-width: 425px) {
+    .display-4 {
+        display: none;
+    }
+    .headpara {
+        display: none;
+    }
+    .card {
+        margin-top: 25px;
+    }
+    .quick-link {
+        margin: 36px 0px;
+    }
+    footer .firstrow {
+        padding: 13px;
+    }
+}
+@media only screen and (max-width: 555px) {
+    .display-4 {
+        display: none;
+    }
+    .headpara {
+        display: none;
+    }
+    .quick-link {
+        margin: 36px 0px;
+    }
+}
+@media only screen and (max-width: 585px) {
+    .display-4 {
+        display: none;
+    }
+    .card {
+        margin-top: 30px;
+    }
+    footer .quick-link {
+        margin: 20px 0px;
+    }
+    footer .firstrow {
+        /* text-align: center; */
+        margin-left: 20px;
+    }
+}
+@media only screen and (max-width: 360px) {
+    .display-4 {
+        display: none;
+    }
+    .headpara {
+        display: none;
+    }
+    .card {
+        margin-top: 32px;
+    }
+
+}
+@media only screen and (max-width: 375px) {
+    .display-4 {
+        display: none;
+    }
+    .headpara {
+        display: none;
+    }
+    .card {
+        margin-top: 32px;
+    }
+    footer .firstrow {
+        padding: 13px !important;
+        margin-right: 20px;
+    }
+}
+@media only screen and (max-width: 667px) {
+    .display-4 {
+        display: none;
+    }
+    .card {
+        margin-top: 20px;
+    }
+    footer .quick-link {
+        margin: 20px 0px;
+    }
+}
+@media only screen and (max-width: 736px) {
+    .display-4 {
+        display: none;
+    }
+    .card {
+        margin-top: 20px;
+    }
+    footer .quick-link {
+        margin: 20px 0px;
+    }
+}
+@media only screen and (max-width: 320px) {
+    footer .firstrow iframe {
+        margin-left: -27px;
+    }
+}
+
+.wrapper {
+    width: 50%;
+    margin: 20px auto;
+    background: #bdbdbd;
+    padding: 50px;
+    border-radius: 10px;
+}
+.wrapper h3 {
+    text-align: center;
+}
+.wrapper label {
+    display: block;
+}
+.wrapper input[type="text"] {
+    background-color: white;
+    border: 1px solid #ced4da;
+}
+.wrapper-full {
+    background-color: gray;
+    padding: 20px;
+}
+.modal-content {
+    background-color: #1d1d1d;
+    color: white;
+}
+.btn-primary {
+    color: #000;
+    background-color: #c3ea27;
+    border-color: #c3ea27;
+}

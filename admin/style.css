@@ -1,0 +1,162 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+.heading {
+    background: #393939;
+    padding: 16px;
+    color: white;
+}
+.sidebar {
+    background: #393939;
+    width: 22%;
+    padding: 1px;
+    height: 600px;
+    overflow: auto;
+}
+.sidebar ul li {
+    list-style: none;
+    padding: 16px 0px;
+    border-bottom: 1px solid #7b7b7b;
+    font-size: 19px;
+}
+.sidebar ul a {
+    text-decoration: none;
+    color: white;
+}
+section .wrapper {
+    position: absolute;
+    left: 304px;
+    top: 60px;
+    border: 1px solid gray;
+    width: 75%;
+    padding: 10px;
+    height: 590px;
+    overflow: auto;
+}
+.wrapper table, td, th {
+    /* width: 100%; */
+    border: 1px solid gray;
+    padding: 14px !important;
+    border-collapse: collapse;
+    text-align: center;
+}
+.wrapper table {
+    width: 100%;
+}
+.wrapper table, tr {
+    padding: 10px;
+}
+section .wrapper h3 {
+    text-align: center;
+    font-size: 27px;
+}
+section .wrapper .container {
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px;
+}
+section .wrapper .container label {
+    display: block;
+    font-weight: bold;
+    margin: 5px 0px;
+}
+section .wrapper .container input[type="text"] {
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid gray;
+}
+section .wrapper .container input[type="password"] {
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid gray;
+}
+section .wrapper .container input[type="submit"] {
+    margin: 5px 0px;
+    padding: 10px 30px;
+    font-size: 16px;
+    border: none;
+    background: yellowgreen;
+    border-radius: 5px;
+}
+section .wrapper .box1 {
+    border: 1px solid gray;
+}
+span {
+    color: red;
+}
+input[type="submit"], .active{
+    padding: 7px 22px;
+    border: none;
+    background: yellowgreen;
+    cursor: pointer;
+}
+.active {
+    color: black;
+    text-decoration: none;
+}
+.form {
+    display: none;
+}
+.cancleRide {
+    margin-top: 10px;
+}
+section .wrapper .mainDiv {
+    display: flex;
+    background: #4c4c4c;
+    padding: 3px;
+    border-radius: 8px;
+}
+section .wrapper .mainDiv .box1 {
+    width: 33%;
+    margin: 10px;
+    padding: 20px;
+    height: 130px;
+    background: gray;
+    border-radius: 6px;
+    box-shadow: 2px 2px 6px black;
+}
+.link {
+    border-top: 1px solid rgb(139, 138, 138);
+    background-color: #393939;
+    padding: 4px;
+    margin-left: -21px;
+    margin-right: -21px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    text-align: center;
+}
+.link a {
+    color: White;
+    text-decoration: none;
+}
+.box1 h4 {
+    font-size: 45px;
+    text-align: center;
+    margin: 9px;
+}
+.box1 p {
+    text-align: center;
+    font-size: 20px;
+}
+#allRideSort, #allRideFilter, #pendingRideSort, #pendingRideFilter, #compeleteRideSort, #compeleteRideFilter {
+    padding: 10px;
+    width: 25%;
+    margin: 10px;
+    border-radius: 5px;
+}
+.invoice {
+    border: 1px solid gray;
+    width: 50%;
+    margin: 0 auto;
+    background: #272424;
+    color: white;
+    border-radius: 5px;
+    padding: 23px;
+    /* text-align: center; */
+}
+.invoice strong {
+    color: gray;
+}

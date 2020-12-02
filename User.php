@@ -50,7 +50,7 @@ class User
      */
     function registration($user_name, $name, $dateofsignup, $mobile, $password, $conn)
     {
-        $sql = "SELECT * FROM `tbl_user` WHERE `user_name` = '$user_name'";
+        $sql = "SELECT * FROM `tbl_user` WHERE `user_name` LIKE '$user_name'";
         $query = $conn->query($sql);
         
         if ($query->num_rows > 0) {

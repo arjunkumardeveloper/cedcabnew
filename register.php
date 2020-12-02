@@ -13,6 +13,15 @@
 require 'DbConnection.php';
 require 'header.php';
 require 'User.php';
+
+if (isset($_SESSION['is_admin'])&&$_SESSION['is_admin'] == 1) {
+    header('location: admin/index.php');
+}
+if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 0) {
+    header('location: member/index.php');
+}
+
+
 $insert = '';
 
 if (isset($_POST['submit'])) {

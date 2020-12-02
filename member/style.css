@@ -17,6 +17,9 @@ body {
     font-weight: bold;
     margin-left: 53px;
 }
+.current {
+    color: yellowgreen;
+}
 .brandspan {
     color: black;
 }

@@ -34,6 +34,12 @@ if (($_SESSION['is_admin'] == 1)) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="script.js"></script>
     <title>Document</title>
+    
+    <?php
+    $filename = basename($_SERVER['REQUEST_URI']);
+    // echo $filename;
+    $menu = array('index.php', 'pendingRides.php', 'completeRides.php', 'allRides.php', 'updateInfo.php', 'cpassword.php');
+    ?>
 </head>
 <body>
     <div class="wrapper">
@@ -42,7 +48,13 @@ if (($_SESSION['is_admin'] == 1)) {
             <ul>
                 <a href="index.php">
                     <li>
-                        <i class="fa fa-th-large" aria-hidden="true"></i>
+                        <i class="fa fa-th-large 
+                        <?php 
+                        if ($filename == 'index.php') :
+                        ?>
+                        current
+                        <?php endif; ?>
+                         " aria-hidden="true"></i>
                         Dashboard
                     </li>
                 </a>
@@ -58,15 +70,33 @@ if (($_SESSION['is_admin'] == 1)) {
                         Rides
                         <ul>
                             <li>
-                            <i class="fa fa-location-arrow" aria-hidden="true"></i>
+                            <i class="fa fa-location-arrow 
+                            <?php 
+                            if ($filename == 'pendingRides.php') :
+                            ?>
+                            current
+                            <?php endif; ?>
+                            " aria-hidden="true"></i>
                             <a href="pendingRides.php">Pending Rides</a>
                             </li>
                             <li>
-                            <i class="fa fa-location-arrow" aria-hidden="true"></i>
+                            <i class="fa fa-location-arrow
+                            <?php 
+                            if ($filename == 'completeRides.php') :
+                            ?>
+                            current
+                            <?php endif; ?>
+                            " aria-hidden="true"></i>
                             <a href="completeRides.php">Completed Rides</a>
                             </li>
                             <li>
-                            <i class="fa fa-location-arrow" aria-hidden="true"></i>
+                            <i class="fa fa-location-arrow
+                            <?php 
+                            if ($filename == 'allRides.php') :
+                            ?>
+                            current
+                            <?php endif; ?>
+                            " aria-hidden="true"></i>
                             <a href="allRides.php">All Rides</a>
                             </li>
                         </ul>
@@ -78,11 +108,23 @@ if (($_SESSION['is_admin'] == 1)) {
                         Account
                         <ul>
                             <li>
-                            <i class="fa fa-location-arrow" aria-hidden="true"></i>
+                            <i class="fa fa-location-arrow
+                            <?php 
+                            if ($filename == 'updateInfo.php') :
+                            ?>
+                            current
+                            <?php endif; ?>
+                            " aria-hidden="true"></i>
                             <a href="updateInfo.php">Update information</a>
                             </li>
                             <li>
-                            <i class="fa fa-location-arrow" aria-hidden="true"></i>
+                            <i class="fa fa-location-arrow
+                            <?php 
+                            if ($filename == 'cpassword.php') :
+                            ?>
+                            current
+                            <?php endif; ?>
+                            " aria-hidden="true"></i>
                             <a href="cpassword.php">Change Password</a>
                             </li>
                         </ul>

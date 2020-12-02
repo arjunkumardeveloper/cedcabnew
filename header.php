@@ -32,7 +32,7 @@ session_start();
     <section>
         <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light">
-  <a class="navbar-brand" href="#">CED <span class="brandspan">CAB</span></a>
+  <a class="navbar-brand" href="index.php">CED <span class="brandspan">CAB</span></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -53,11 +53,18 @@ session_start();
           // echo $_SESSION['is_admin'];
         if (isset($_SESSION['is_admin']) && ($_SESSION['is_admin'] == 0)) {
             ?>
+            <li class="nav-item">
+              <a class="nav-link" href="member/index.php">Dashboard</a>
+            </li>
             <a class="nav-link" href="member/logout.php">Logout</a>
             <?php
         } else {
             ?>
             <a class="nav-link" href="login.php">Login</a>
+            <li class="nav-item">
+              <a class="nav-link" href="register.php">SignUp</a>
+            </li>
+            
             <?php
         }
         ?>

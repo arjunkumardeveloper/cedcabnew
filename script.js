@@ -75,7 +75,7 @@ $(document).ready(function() {
                         // $('#sendRequest').show();msg-body
 // alert(result);
 console.log(result);
-                        document.getElementById('msg-body').innerHTML = "Total Distance: " + result['distance'] + "KM <br> Total Fare: " + result['price'] + "/- <br> Pickup Location: " + result['pickup'] + "<br> Drop Location: " + result['drop'] + "<br> Cab Type: " + result['cab'];
+                        document.getElementById('msg-body').innerHTML = "Total Distance: " + result['distance'] + "KM <br> Total Fare: " + result['price'] + "/- <br> Pickup Location: " + result['pickup'] + "<br> Drop Location: " + result['drop'] + "<br> Cab Type: " + result['cab'] + "<br> Luggage: " + result['lugg'];
 
                         // document.getElementById('distance').innerHTML = "Total Distance: "+result['distance']+" KM";
                         // document.getElementById('price').innerHTML = "Total Fare: "+result['price']+"/-";
@@ -123,7 +123,7 @@ console.log(result);
                     // alert("Login First");
                     window.location.href = "login.php";
                 } else {
-                    alert('Your Ride Request send successfully !');
+                    // alert('Your Ride Request send successfully !');
                     window.location.href = "member/index.php";
                 }
             },

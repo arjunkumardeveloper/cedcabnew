@@ -40,12 +40,12 @@ if (isset($_POST['submit'])) {
                 <div class="form-group">
                     <label for="location">Add Location</label>
                     <input type="text" name="location" id="location" 
-                    class="form-control">
+                    class="form-control" required>
                 </div>
                 <div class="form-group">
                     <label for="distance">Add Distance</label>
                     <input type="text" name="distance" id="distance" 
-                    class="form-control">
+                    class="form-control" required>
                 </div>
                 <div class="form-group">
                     <input type="submit" value="Add Location" name="submit">

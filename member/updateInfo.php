@@ -73,7 +73,7 @@ $Dbconn->conn;
                 <div class="form-group">
                     <label for="mobile">Mobile<span>*</span></label>
                     <input type="text" name="mobile" id="fetchmobile" 
-                    class="form-control">
+                    class="form-control" onkeypress="return checkNum()">
                 </div>
                 <div class="form-group">
                     <input type="submit" id="updateInfo" value="Update" name="submit">
@@ -82,7 +82,16 @@ $Dbconn->conn;
         </div>
     </div>
 </section>
-
+<script>
+    function checkNum() {
+    if ((event.keyCode > 47) && (event.keyCode < 58)) {
+        return true;
+    } else {
+        alert("Please enter numeric value only !");
+        return false;
+    }
+}
+</script>
 <?php
     require 'footer.php';
 ?>

@@ -14,6 +14,16 @@ require 'header.php';
 require 'User.php';
 require 'DbConnection.php';
 require 'Ride.php';
+
+if (isset($_SESSION['is_admin'])&&$_SESSION['is_admin'] == 1) {
+    header('location: admin/index.php');
+}
+if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 0) {
+    header('location: member/index.php');
+}
+
+// echo time();
+
 $insert = '';
 // print_r($_SESSION['ride']);
 if (isset($_POST['submit'])) {
@@ -33,29 +43,37 @@ if (isset($_POST['submit'])) {
         if ($insert['is_admin'] == 0) {
             
             if (isset($_SESSION['ride'])) {
-                $pickup = $_SESSION['ride']['pickup'];
-                $drop = $_SESSION['ride']['drop'];
-                $distance = $_SESSION['ride']['distance'];
-                $lugg = $_SESSION['ride']['lugg'];
-                $fare = $_SESSION['ride']['fare'];
-                $cab = $_SESSION['ride']['cab'];
-                // $uid = $insert['user_id'];
-                // print_r($cab);
-                // exit();
-                
+                $now = time();
+                // echo $now;
+                if ($now < $_SESSION['expire']) {
 
-                $_SESSION['name'] = $insert['name'];
-                $_SESSION['is_admin'] = $insert['is_admin'];
-                $_SESSION['userid'] = $insert['user_id'];
-                // $uid = $_SESSION['userid'];
-                
-                $tdate = date("Y-m-d");
-                $msg = $Ride->insertRide($tdate, $pickup, $drop, $distance, $lugg, $fare, $cab, $Dbconn->conn);
-                echo $msg;
-                // exit();
-                
-                // unset($_SESSION['ride']);
-                header('location: member/index.php');
+                    $pickup = $_SESSION['ride']['pickup'];
+                    $drop = $_SESSION['ride']['drop'];
+                    $distance = $_SESSION['ride']['distance'];
+                    $lugg = $_SESSION['ride']['lugg'];
+                    $fare = $_SESSION['ride']['fare'];
+                    $cab = $_SESSION['ride']['cab'];
+                    // $uid = $insert['user_id'];
+                    // print_r($cab);
+                    // exit();
+                    
+
+                    $_SESSION['name'] = $insert['name'];
+                    $_SESSION['is_admin'] = $insert['is_admin'];
+                    $_SESSION['userid'] = $insert['user_id'];
+                    // $uid = $_SESSION['userid'];
+                    
+                    // $tdate = date("Y-m-d");
+                    $msg = $Ride->insertRide($pickup, $drop, $distance, $lugg, $fare, $cab, $Dbconn->conn);
+                    echo $msg;
+                    // exit();
+                    
+                    // unset($_SESSION['ride']);
+                    header('location: member/index.php');
+                } else {
+                    unset($_SESSION['ride']);
+                    header('location: index.php');
+                }
             } else {
                 $_SESSION['name'] = $insert['name'];
                 $_SESSION['is_admin'] = $insert['is_admin'];

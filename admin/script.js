@@ -104,7 +104,7 @@ $(document).ready(function() {
                 sr = 1;
                 for (var i = 0; i < msg.length; i++) {
                     if (msg[i]['status']==1) {
-                        status = '<form action="allRide.php" method="post" class="cancleRide"><input type="hidden" name="rideid" value="+msg[i]["ride_id"]+"><input type="submit" value="Pending" name="pending"></form><form action="allRide.php" method="post" class="cancleRide"><input type="hidden" name="rideid" value="+msg[i]["ride_id"]+"><input type="submit" value="Cancle" name="cancle"></form>';
+                        status = '<form action="allRide.php" method="post" class="cancleRide"><input type="hidden" name="rideid" value="'+msg[i]["ride_id"]+'"><input type="submit" value="Pending" name="pending"></form><form action="allRide.php" method="post" class="cancleRide"><input type="hidden" name="rideid" value="'+msg[i]["ride_id"]+'"><input type="submit" value="Cancle" name="cancle"></form>';
                     } else if (msg[i]['status'] == 2) {
                         // var status = document.write("Approved");
                         status = "Approved";
@@ -112,8 +112,13 @@ $(document).ready(function() {
                         // var status = document.write('Cancelled');
                         status = "Cancelled";
                     }
+                    if (msg[i]['luggage'] != "") {
+                        luggage = msg[i]['luggage'];
+                    } else {
+                        luggage = "--";
+                    }
 
-                    html += "<tr><td>"+ sr++ +"</td><td>"+msg[i]['ride_date']+"</td><td>"+msg[i]['pickup']+"</td><td>"+msg[i]['droplocation']+"</td><td>"+msg[i]['total_distance']+"</td><td>"+msg[i]['luggage']+"</td><td>"+msg[i]['total_fare']+"</td><td>"+msg[i]['cab']+"</td><td>"+status+"</td><td>"+msg[i]['customer_user_id']+"</td><td><form action='allRide.php' method='post'  style='display: inline;'><input type='hidden' name='rideid' value='+msg[i]['ride_id']+'><input type='submit' value='Delete' name='submit'></form></td></tr>";
+                    html += "<tr><td>"+ sr++ +"</td><td>"+msg[i]['ride_date']+"</td><td>"+msg[i]['pickup']+"</td><td>"+msg[i]['droplocation']+"</td><td>"+msg[i]['total_distance']+"</td><td>"+luggage+"</td><td>"+msg[i]['total_fare']+"</td><td>"+msg[i]['cab']+"</td><td>"+status+"</td><td>"+msg[i]['customer_user_id']+"</td><td><form action='allRide.php' method='post'  style='display: inline;'><input type='hidden' name='rideid' value='"+msg[i]['ride_id']+"'><input type='submit' value='Delete' name='submit'></form></td></tr>";
                 }
                 html += "</table>";
                 $('#allRideResult').html(html);
@@ -143,7 +148,7 @@ $(document).ready(function() {
                 sr = 1;
                 for (var i = 0; i < msg.length; i++) {
                     if (msg[i]['status']==1) {
-                        status = '<form action="allRide.php" method="post" class="cancleRide"><input type="hidden" name="rideid" value="+msg[i]["ride_id"]+"><input type="submit" value="Pending" name="pending"></form><form action="allRide.php" method="post" class="cancleRide"><input type="hidden" name="rideid" value="+msg[i]["ride_id"]+"><input type="submit" value="Cancle" name="cancle"></form>';
+                        status = '<form action="allRide.php" method="post" class="cancleRide"><input type="hidden" name="rideid" value="'+msg[i]["ride_id"]+'"><input type="submit" value="Pending" name="pending"></form><form action="allRide.php" method="post" class="cancleRide"><input type="hidden" name="rideid" value="'+msg[i]["ride_id"]+'"><input type="submit" value="Cancle" name="cancle"></form>';
                     } else if (msg[i]['status'] == 2) {
                         // var status = document.write("Approved");
                         status = "Approved";
@@ -152,7 +157,13 @@ $(document).ready(function() {
                         status = "Cancelled";
                     }
 
-                    html += "<tr><td>"+ sr++ +"</td><td>"+msg[i]['ride_date']+"</td><td>"+msg[i]['pickup']+"</td><td>"+msg[i]['droplocation']+"</td><td>"+msg[i]['total_distance']+"</td><td>"+msg[i]['luggage']+"</td><td>"+msg[i]['total_fare']+"</td><td>"+msg[i]['cab']+"</td><td>"+status+"</td><td>"+msg[i]['customer_user_id']+"</td><td><form action='allRide.php' method='post'  style='display: inline;'><input type='hidden' name='rideid' value='+msg[i]['ride_id']+'><input type='submit' value='Delete' name='submit'></form></td></tr>";
+                    if (msg[i]['luggage'] != "") {
+                        luggage = msg[i]['luggage'];
+                    } else {
+                        luggage = "--";
+                    }
+
+                    html += "<tr><td>"+ sr++ +"</td><td>"+msg[i]['ride_date']+"</td><td>"+msg[i]['pickup']+"</td><td>"+msg[i]['droplocation']+"</td><td>"+msg[i]['total_distance']+"</td><td>"+luggage+"</td><td>"+msg[i]['total_fare']+"</td><td>"+msg[i]['cab']+"</td><td>"+status+"</td><td>"+msg[i]['customer_user_id']+"</td><td><form action='allRide.php' method='post'  style='display: inline;'><input type='hidden' name='rideid' value='"+msg[i]['ride_id']+"'><input type='submit' value='Delete' name='submit'></form></td></tr>";
                 }
                 html += "</table>";
                 $('#allRideResult').html(html);
@@ -186,7 +197,7 @@ $(document).ready(function() {
                 sr = 1;
                 for (var i = 0; i < msg.length; i++) {
                     if (msg[i]['status']==1) {
-                        status = '<form action="allRide.php" method="post" class="cancleRide"><input type="hidden" name="rideid" value="+msg[i]["ride_id"]+"><input type="submit" value="Pending" name="pending"></form><form action="allRide.php" method="post" class="cancleRide"><input type="hidden" name="rideid" value="+msg[i]["ride_id"]+"><input type="submit" value="Cancle" name="cancle"></form>';
+                        status = '<form action="allRide.php" method="post" class="cancleRide"><input type="hidden" name="rideid" value="'+msg[i]["ride_id"]+'"><input type="submit" value="Pending" name="pending"></form><form action="allRide.php" method="post" class="cancleRide"><input type="hidden" name="rideid" value="'+msg[i]["ride_id"]+'"><input type="submit" value="Cancle" name="cancle"></form>';
                     } else if (msg[i]['status'] == 2) {
                         // var status = document.write("Approved");
                         status = "Approved";
@@ -195,7 +206,13 @@ $(document).ready(function() {
                         status = "Cancelled";
                     }
 
-                    html += "<tr><td>"+ sr++ +"</td><td>"+msg[i]['ride_date']+"</td><td>"+msg[i]['pickup']+"</td><td>"+msg[i]['droplocation']+"</td><td>"+msg[i]['total_distance']+"</td><td>"+msg[i]['luggage']+"</td><td>"+msg[i]['total_fare']+"</td><td>"+msg[i]['cab']+"</td><td>"+status+"</td><td>"+msg[i]['customer_user_id']+"</td><td><form action='allRide.php' method='post'  style='display: inline;'><input type='hidden' name='rideid' value='+msg[i]['ride_id']+'><input type='submit' value='Delete' name='submit'></form></td></tr>";
+                    if (msg[i]['luggage'] != "") {
+                        luggage = msg[i]['luggage'];
+                    } else {
+                        luggage = "--";
+                    }
+
+                    html += "<tr><td>"+ sr++ +"</td><td>"+msg[i]['ride_date']+"</td><td>"+msg[i]['pickup']+"</td><td>"+msg[i]['droplocation']+"</td><td>"+msg[i]['total_distance']+"</td><td>"+luggage+"</td><td>"+msg[i]['total_fare']+"</td><td>"+msg[i]['cab']+"</td><td>"+status+"</td><td>"+msg[i]['customer_user_id']+"</td><td><form action='allRide.php' method='post'  style='display: inline;'><input type='hidden' name='rideid' value='"+msg[i]['ride_id']+"'><input type='submit' value='Delete' name='submit'></form></td></tr>";
                 }
                 html += "</table>";
                 $('#allRideResult').html(html);
@@ -228,7 +245,7 @@ $(document).ready(function() {
                 sr = 1;
                 for (var i = 0; i < msg.length; i++) {
                     if (msg[i]['status']==1) {
-                        status = '<form action="allRide.php" method="post" class="cancleRide"><input type="hidden" name="rideid" value="+msg[i]["ride_id"]+"><input type="submit" value="Pending" name="pending"></form><form action="allRide.php" method="post" class="cancleRide"><input type="hidden" name="rideid" value="+msg[i]["ride_id"]+"><input type="submit" value="Cancle" name="cancle"></form>';
+                        status = '<form action="allRide.php" method="post" class="cancleRide"><input type="hidden" name="rideid" value="'+msg[i]["ride_id"]+'"><input type="submit" value="Pending" name="pending"></form><form action="allRide.php" method="post" class="cancleRide"><input type="hidden" name="rideid" value="'+msg[i]["ride_id"]+'"><input type="submit" value="Cancle" name="cancle"></form>';
                     } else if (msg[i]['status'] == 2) {
                         // var status = document.write("Approved");
                         status = "Approved";
@@ -237,7 +254,13 @@ $(document).ready(function() {
                         status = "Cancelled";
                     }
 
-                    html += "<tr><td>"+ sr++ +"</td><td>"+msg[i]['ride_date']+"</td><td>"+msg[i]['pickup']+"</td><td>"+msg[i]['droplocation']+"</td><td>"+msg[i]['total_distance']+"</td><td>"+msg[i]['luggage']+"</td><td>"+msg[i]['total_fare']+"</td><td>"+msg[i]['cab']+"</td><td>"+status+"</td><td>"+msg[i]['customer_user_id']+"</td><td><form action='allRide.php' method='post'  style='display: inline;'><input type='hidden' name='rideid' value='+msg[i]['ride_id']+'><input type='submit' value='Delete' name='submit'></form></td></tr>";
+                    if (msg[i]['luggage'] != "") {
+                        luggage = msg[i]['luggage'];
+                    } else {
+                        luggage = "--";
+                    }
+
+                    html += "<tr><td>"+ sr++ +"</td><td>"+msg[i]['ride_date']+"</td><td>"+msg[i]['pickup']+"</td><td>"+msg[i]['droplocation']+"</td><td>"+msg[i]['total_distance']+"</td><td>"+luggage+"</td><td>"+msg[i]['total_fare']+"</td><td>"+msg[i]['cab']+"</td><td>"+status+"</td><td>"+msg[i]['customer_user_id']+"</td><td><form action='allRide.php' method='post'  style='display: inline;'><input type='hidden' name='rideid' value='"+msg[i]['ride_id']+"'><input type='submit' value='Delete' name='submit'></form></td></tr>";
                 }
                 html += "</table>";
                 $('#allRideResult').html(html);
@@ -271,7 +294,7 @@ $(document).ready(function() {
                 sr = 1;
                 for (var i = 0; i < msg.length; i++) {
                     if (msg[i]['status']==1) {
-                        status = '<form action="allRide.php" method="post" class="cancleRide"><input type="hidden" name="rideid" value="+msg[i]["ride_id"]+"><input type="submit" value="Pending" name="pending"></form><form action="allRide.php" method="post" class="cancleRide"><input type="hidden" name="rideid" value="+msg[i]["ride_id"]+"><input type="submit" value="Cancle" name="cancle"></form>';
+                        status = '<form action="allRide.php" method="post" class="cancleRide"><input type="hidden" name="rideid" value="'+msg[i]["ride_id"]+'"><input type="submit" value="Pending" name="pending"></form><form action="allRide.php" method="post" class="cancleRide"><input type="hidden" name="rideid" value="'+msg[i]["ride_id"]+'"><input type="submit" value="Cancle" name="cancle"></form>';
                     } else if (msg[i]['status'] == 2) {
                         // var status = document.write("Approved");
                         status = "Approved";
@@ -280,7 +303,13 @@ $(document).ready(function() {
                         status = "Cancelled";
                     }
 
-                    html += "<tr><td>"+ sr++ +"</td><td>"+msg[i]['ride_date']+"</td><td>"+msg[i]['pickup']+"</td><td>"+msg[i]['droplocation']+"</td><td>"+msg[i]['total_distance']+"</td><td>"+msg[i]['luggage']+"</td><td>"+msg[i]['total_fare']+"</td><td>"+msg[i]['cab']+"</td><td>"+status+"</td><td>"+msg[i]['customer_user_id']+"</td><td><form action='allRide.php' method='post'  style='display: inline;'><input type='hidden' name='rideid' value='+msg[i]['ride_id']+'><input type='submit' value='Delete' name='submit'></form></td></tr>";
+                    if (msg[i]['luggage'] != "") {
+                        luggage = msg[i]['luggage'];
+                    } else {
+                        luggage = "--";
+                    }
+
+                    html += "<tr><td>"+ sr++ +"</td><td>"+msg[i]['ride_date']+"</td><td>"+msg[i]['pickup']+"</td><td>"+msg[i]['droplocation']+"</td><td>"+msg[i]['total_distance']+"</td><td>"+luggage+"</td><td>"+msg[i]['total_fare']+"</td><td>"+msg[i]['cab']+"</td><td>"+status+"</td><td>"+msg[i]['customer_user_id']+"</td><td><form action='allRide.php' method='post'  style='display: inline;'><input type='hidden' name='rideid' value='"+msg[i]['ride_id']+"'><input type='submit' value='Delete' name='submit'></form></td></tr>";
                 }
                 html += "</table>";
                 $('#completeRideResult').html(html);
@@ -314,7 +343,7 @@ $(document).ready(function() {
                 sr = 1;
                 for (var i = 0; i < msg.length; i++) {
                     if (msg[i]['status']==1) {
-                        status = '<form action="allRide.php" method="post" class="cancleRide"><input type="hidden" name="rideid" value="+msg[i]["ride_id"]+"><input type="submit" value="Pending" name="pending"></form><form action="allRide.php" method="post" class="cancleRide"><input type="hidden" name="rideid" value="+msg[i]["ride_id"]+"><input type="submit" value="Cancle" name="cancle"></form>';
+                        status = '<form action="allRide.php" method="post" class="cancleRide"><input type="hidden" name="rideid" value="'+msg[i]["ride_id"]+'"><input type="submit" value="Pending" name="pending"></form><form action="allRide.php" method="post" class="cancleRide"><input type="hidden" name="rideid" value="'+msg[i]["ride_id"]+'"><input type="submit" value="Cancle" name="cancle"></form>';
                     } else if (msg[i]['status'] == 2) {
                         // var status = document.write("Approved");
                         status = "Approved";
@@ -323,7 +352,13 @@ $(document).ready(function() {
                         status = "Cancelled";
                     }
 
-                    html += "<tr><td>"+ sr++ +"</td><td>"+msg[i]['ride_date']+"</td><td>"+msg[i]['pickup']+"</td><td>"+msg[i]['droplocation']+"</td><td>"+msg[i]['total_distance']+"</td><td>"+msg[i]['luggage']+"</td><td>"+msg[i]['total_fare']+"</td><td>"+msg[i]['cab']+"</td><td>"+status+"</td><td>"+msg[i]['customer_user_id']+"</td><td><form action='allRide.php' method='post'  style='display: inline;'><input type='hidden' name='rideid' value='+msg[i]['ride_id']+'><input type='submit' value='Delete' name='submit'></form></td></tr>";
+                    if (msg[i]['luggage'] != "") {
+                        luggage = msg[i]['luggage'];
+                    } else {
+                        luggage = "--";
+                    }
+
+                    html += "<tr><td>"+ sr++ +"</td><td>"+msg[i]['ride_date']+"</td><td>"+msg[i]['pickup']+"</td><td>"+msg[i]['droplocation']+"</td><td>"+msg[i]['total_distance']+"</td><td>"+luggage+"</td><td>"+msg[i]['total_fare']+"</td><td>"+msg[i]['cab']+"</td><td>"+status+"</td><td>"+msg[i]['customer_user_id']+"</td><td><form action='allRide.php' method='post'  style='display: inline;'><input type='hidden' name='rideid' value='"+msg[i]['ride_id']+"'><input type='submit' value='Delete' name='submit'></form></td></tr>";
                 }
                 html += "</table>";
                 $('#completeRideResult').html(html);

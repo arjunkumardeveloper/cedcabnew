@@ -95,12 +95,18 @@ if (isset($_POST['submit'])) {
                             ?>
                         </td>
                         <td>
+                        <?php
+                        if ($row['is_admin'] == 1) {
+                            echo "--";
+                        } else {
+                        ?>
                             <form action="registerUser.php" method="post">
                                 <input type="hidden" name="userid"
                                 value="<?php echo $row['user_id']; ?>">
                                 <input type="submit" value="Delete" name="submit">
                             </form>
                         </td>
+                        <?php }?>
                     </tr>
 
                 <?php

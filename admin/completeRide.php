@@ -108,7 +108,7 @@ if (isset($_POST['submit'])) {
                                 value="<?php echo $row['ride_id']; ?>">
                                 <input type="submit" value="Delete" name="submit">
                             </form>
-                            
+                            <a href="invoice.php?id=<?php echo $row['ride_id'] ?>">Invoice</a>
                         </td>
                     </tr>
 

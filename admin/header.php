@@ -93,7 +93,7 @@ if (($_SESSION['is_admin'] == 0)) {
                             </li>
                             <li>
                             <i class="fa fa-location-arrow" aria-hidden="true"></i>
-                            <a href="cancleRide.php">Canceled Rides</a>
+                            <a href="cancleRide.php">Cancelled Rides</a>
                             </li>
                         </ul>
                     </li>

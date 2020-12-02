@@ -33,16 +33,106 @@ $totalEarning = $Ride->totalEarning($Dbconn->conn);
 
 $tlocation = $Location->findTotalLocation($Dbconn->conn);
 
+if (isset($_POST['pending'])) {
+    $rideid = $_POST['rideid'];
+    // echo $rideid;
+    $msg = $Ride->approvedRide($rideid, $Dbconn->conn);
+}
 
+if (isset($_POST['cancle'])) {
+    $rideid = $_POST['rideid'];
+
+    $msg = $Ride->cancleRide($rideid, $Dbconn->conn);
+}
+
+$sr = 1;
+$data = $Ride->fetchLastPendingRide($Dbconn->conn);
 ?>
 
 <section>
     <div class="wrapper">
+        <?php
+        if ($data != 0) {
+        
+        ?>
+        <table>
+        <thead>
+            <tr>
+                <th>Sr.No.</th>
+                <th>Ride Date</th>
+                <th>PickUp Location</th>
+                <th>Drop Location</th>
+                <th>Total Distance</th>
+                <th>Luggage Weight</th>
+                <th>Total Fare</th>
+                <th>Cab Type</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+                    <tr>
+                        <td><?php echo $sr++; ?></td>
+                        <td><?php echo date('d-M-Y', strtotime($data['ride_date'])); ?></td>
+                        <td><?php echo $data['pickup']; ?></td>
+                        <td><?php echo $data['droplocation']; ?></td>
+                        <td><?php echo $data['total_distance']; ?></td>
+                        <td>
+                            <?php 
+                            if ($data['luggage']) {
+                                echo $data['luggage'];
+                            } else {
+                                echo "--";
+                            }
+                            ?>
+                            </td>
+                        <td><?php echo $data['total_fare']; ?></td>
+                        <td><?php echo $data['cab']; ?></td>
+                        <td>
+                        <?php
+                        if ($data['status'] == 1) {
+                            ?>
+                            <marquee behavior="10" direction="" style="color: red;">Pending..</marquee>
+                            <?php
+                        } else if ($data['status'] == 2) {
+                            echo "Approved";
+                        } else {
+                            echo "Cancle";
+                        }
+                        ?>
+                        </td>
+                        <td>
+                        <?php
+                        if ($data['status'] == 1) {
+                            ?>
+                            <form action="index.php" method="post">
+                                <input type="hidden" name="rideid" 
+                                value="<?php echo $data['ride_id']; ?>">
+                                <input type="submit" value="Pending" name="pending">
+                            </form>
+                            <form action="index.php" method="post" class="cancleRide">
+                                <input type="hidden" name="rideid" 
+                                value="<?php echo $data['ride_id']; ?>">
+                                <input type="submit" value="Cancel" name="cancle">
+                            </form>
+                            <?php
+                        } else if ($data['status'] == 2) {
+                            echo "Approved";
+                        } else {
+                            echo "Cancle";
+                        }
+                        ?>
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        <?php   }   ?>
         <div class="mainDiv">
             <div class="box1">
-                <h4><?php echo $tuser[0]; ?></h4>
-                <p>Total User</p>
-                <div class="link"><a href="registerUser.php">More info
+                <h4><?php echo $pendingride[0]; ?></h4>
+                <p>Pending Rides</p>
+                <div class="link"><a href="pendingRide.php">More info
                 <i class="fa fa-angle-double-right" aria-hidden="true"></i>
                 </a></div>
             </div>
@@ -77,9 +167,9 @@ $tlocation = $Location->findTotalLocation($Dbconn->conn);
                 </a></div>
             </div>
             <div class="box1">
-                <h4><?php echo $pendingride[0]; ?></h4>
-                <p>Pending Rides</p>
-                <div class="link"><a href="pendingRide.php">More info
+                <h4><?php echo $tuser[0]; ?></h4>
+                <p>Total User</p>
+                <div class="link"><a href="registerUser.php">More info
                 <i class="fa fa-angle-double-right" aria-hidden="true"></i>
                 </a></div>
             </div>
@@ -101,9 +191,9 @@ $tlocation = $Location->findTotalLocation($Dbconn->conn);
             </div>
             <div class="box1">
                 <h4><?php echo "Rs. " . $totalEarning[0] . "/-"; ?></h4>
-                <p>Total Earinings</p>
-                <div class="link"><a href="">more info
-                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                <p>Total Earning</p>
+                <div class="link"><a href="">Lorem ipsum dolor sit amet.
+                <!-- <i class="fa fa-angle-double-right" aria-hidden="true"></i> -->
                 </a></div>
             </div>
         </div>

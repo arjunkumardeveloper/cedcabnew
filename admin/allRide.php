@@ -28,7 +28,7 @@ if (isset($_POST['submit'])) {
 
 if (isset($_POST['pending'])) {
     $rideid = $_POST['rideid'];
-    // echo $rideid;
+    echo $rideid;
     $msg = $Ride->approvedRide($rideid, $Dbconn->conn);
 }
 
@@ -110,13 +110,13 @@ if (isset($_POST['cancle'])) {
                             <form action="allRide.php" method="post" class="cancleRide">
                                 <input type="hidden" name="rideid" 
                                 value="<?php echo $row['ride_id']; ?>">
-                                <input type="submit" value="Cancle" name="cancle">
+                                <input type="submit" value="Cancel" name="cancle">
                             </form>
                             <?php
                         } else if ($row['status'] == 2) {
-                            echo "Approved";
+                            echo "Completed";
                         } else {
-                            echo "Cancle";
+                            echo "Cancel";
                         }
                         ?>
                         </td>
@@ -129,7 +129,7 @@ if (isset($_POST['cancle'])) {
                                 value="<?php echo $row['ride_id']; ?>">
                                 <input type="submit" value="Delete" name="submit">
                             </form>    
-                            <a href="invoice.php?id=<?php echo $row['ride_id'] ?>">Invoice</a>
+                            
                         </td>
                     </tr>
 

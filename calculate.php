@@ -12,19 +12,27 @@
 session_start();
 require 'DbConnection.php';
 require 'Ride.php';
+require 'Location.php';
 $Dbconn = new DbConnection();
 $Ride = new Ride();
-
-    $location = array(
-        'charbagh'=>'0',
-        'indira nagar'=>'10',
-        'bbd'=>'30',
-        'barabanki'=>'60',
-        'faizabad'=>'100',
-        'basti'=>'150',
-        'gorakhpur'=>'210'
-    );
-
+$Dbconn = new DbConnection();
+$Location = new Location();
+$data = $Location->fetchLocationAvai($Dbconn->conn);
+// echo "<pre>";
+while ($row = mysqli_fetch_assoc($data)) {
+    // print_r($row);
+     $location[$row['name']] = $row['distance']; 
+}
+    // $location = array(
+    //     'charbagh'=>'0',
+    //     'indira nagar'=>'10',
+    //     'bbd'=>'30',
+    //     'barabanki'=>'60',
+    //     'faizabad'=>'100',
+    //     'basti'=>'150',
+    //     'gorakhpur'=>'210',
+    //     'Sonebhadra'=>'300'
+    // );;
         
     $pickup = $_POST['pickup'];
     $drop = $_POST['drop'];
@@ -141,20 +149,23 @@ $Ride = new Ride();
         }
         // echo $price;
         if (isset($_POST['submit'])) {
-            $tdate = date("Y-m-d");
             
-            print_r(json_encode(array("price"=>$price, "distance"=>$distance, "pickup"=>$pickup, "drop"=>$drop, "cab"=>$cab)));
+            print_r(json_encode(array("price"=>$price, "distance"=>$distance, "pickup"=>$pickup, "drop"=>$drop, "cab"=>$cab, "lugg"=>$lugg)));
 
-            $_SESSION['ride'] = array("pickup"=>$pickup, "drop"=>$drop, "distance"=>$distance, "lugg"=>$lugg, "fare"=>$price, "cab"=>$cab);
+            
             
         } else if (isset($_POST['operation'])) {
             // echo "success";
             
+            $_SESSION['ride'] = array("pickup"=>$pickup, "drop"=>$drop, "distance"=>$distance, "lugg"=>$lugg, "fare"=>$price, "cab"=>$cab);
+
+            $_SESSION['start'] = time();
+            $_SESSION['expire'] = $_SESSION['start'] + (3 * 60);
 
             if (isset($_SESSION['userid']) && ($_SESSION['is_admin'] == 0)) {
 
-                $tdate = date("Y-m-d");
-                $msg = $Ride->insertRide($tdate, $pickup, $drop, $distance, $lugg, $price, $cab, $Dbconn->conn);
+                // $tdate = date("Y-m-d");
+                $msg = $Ride->insertRide($pickup, $drop, $distance, $lugg, $price, $cab, $Dbconn->conn);
                 echo $msg;
                 
 

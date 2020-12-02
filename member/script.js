@@ -95,7 +95,7 @@ $(document).ready(function() {
                 // console.log(msg['ride_date']);
                 // console.log(msg[0]['ride_date']);
                 
-                var html = "<table><tr><th>Sr.No.</th><th>Ride Date</th><th>Pickup Location</th><th>Drop Location</th><th>Total Distance</th><th>Luggage Weight</th><th>Total Fare</th><th>Status</th></tr>";
+                var html = "<table><tr><th>Sr.No.</th><th>Ride Date</th><th>Pickup Location</th><th>Drop Location</th><th>Total Distance</th><th>Luggage Weight</th><th>Total Fare</th><th>Cab Type</th><th>Status</th></tr>";
                 sr = 1;
                 for (var i = 0; i < msg.length; i++) {
                     if (msg[i]['status']==1) {
@@ -108,7 +108,13 @@ $(document).ready(function() {
                         status = "Cancelled";
                     }
 
-                    html += "<tr><td>"+ sr++ +"</td><td>"+msg[i]['ride_date']+"</td><td>"+msg[i]['pickup']+"</td><td>"+msg[i]['droplocation']+"</td><td>"+msg[i]['total_distance']+"</td><td>"+msg[i]['luggage']+"</td><td>"+msg[i]['total_fare']+"</td><td>"+status+"</td></tr>";
+                    if (msg[i]['luggage'] != "") {
+                        luggage = msg[i]['luggage'];
+                    } else {
+                        luggage = "--";
+                    }
+
+                    html += "<tr><td>"+ sr++ +"</td><td>"+msg[i]['ride_date']+"</td><td>"+msg[i]['pickup']+"</td><td>"+msg[i]['droplocation']+"</td><td>"+msg[i]['total_distance']+"</td><td>"+luggage+"</td><td>"+msg[i]['total_fare']+"</td><td>"+ msg[i]['cab'] +"</td><td>"+status+"</td></tr>";
                 }
                 html += "</table>";
                 $('#Rideresult').html(html);
@@ -145,7 +151,13 @@ $(document).ready(function() {
                         status = "Cancelled";
                     }
 
-                    html += "<tr><td>"+ sr++ +"</td><td>"+msg[i]['ride_date']+"</td><td>"+msg[i]['pickup']+"</td><td>"+msg[i]['droplocation']+"</td><td>"+msg[i]['total_distance']+"</td><td>"+msg[i]['luggage']+"</td><td>"+msg[i]['total_fare']+"</td><td>"+msg[i]['cab']+"</td><td>"+status+"</td></tr>";
+                    if (msg[i]['luggage'] != "") {
+                        luggage = msg[i]['luggage'];
+                    } else {
+                        luggage = "--";
+                    }
+
+                    html += "<tr><td>"+ sr++ +"</td><td>"+msg[i]['ride_date']+"</td><td>"+msg[i]['pickup']+"</td><td>"+msg[i]['droplocation']+"</td><td>"+msg[i]['total_distance']+"</td><td>"+luggage+"</td><td>"+msg[i]['total_fare']+"</td><td>"+msg[i]['cab']+"</td><td>"+status+"</td></tr>";
                 }
                 html += "</table>";
                 $('#Rideresult').html(html);
@@ -185,7 +197,13 @@ $(document).ready(function() {
                         status = "Cancelled";
                     }
 
-                    html += "<tr><td>"+ sr++ +"</td><td>"+msg[i]['ride_date']+"</td><td>"+msg[i]['pickup']+"</td><td>"+msg[i]['droplocation']+"</td><td>"+msg[i]['total_distance']+"</td><td>"+msg[i]['luggage']+"</td><td>"+msg[i]['total_fare']+"</td><td>"+msg[i]['cab']+"</td><td>"+status+"</td></tr>";
+                    if (msg[i]['luggage'] != "") {
+                        luggage = msg[i]['luggage'];
+                    } else {
+                        luggage = "--";
+                    }
+
+                    html += "<tr><td>"+ sr++ +"</td><td>"+msg[i]['ride_date']+"</td><td>"+msg[i]['pickup']+"</td><td>"+msg[i]['droplocation']+"</td><td>"+msg[i]['total_distance']+"</td><td>"+luggage+"</td><td>"+msg[i]['total_fare']+"</td><td>"+msg[i]['cab']+"</td><td>"+status+"</td></tr>";
                 }
                 html += "</table>";
                 $('#pendingRideResult').html(html);
@@ -223,7 +241,13 @@ $(document).ready(function() {
                         status = "Cancelled";
                     }
 
-                    html += "<tr><td>"+ sr++ +"</td><td>"+msg[i]['ride_date']+"</td><td>"+msg[i]['pickup']+"</td><td>"+msg[i]['droplocation']+"</td><td>"+msg[i]['total_distance']+"</td><td>"+msg[i]['luggage']+"</td><td>"+msg[i]['total_fare']+"</td><td>"+msg[i]['cab']+"</td><td>"+status+"</td></tr>";
+                    if (msg[i]['luggage'] != "") {
+                        luggage = msg[i]['luggage'];
+                    } else {
+                        luggage = "--";
+                    }
+
+                    html += "<tr><td>"+ sr++ +"</td><td>"+msg[i]['ride_date']+"</td><td>"+msg[i]['pickup']+"</td><td>"+msg[i]['droplocation']+"</td><td>"+msg[i]['total_distance']+"</td><td>"+luggage+"</td><td>"+msg[i]['total_fare']+"</td><td>"+msg[i]['cab']+"</td><td>"+status+"</td></tr>";
                 }
                 html += "</table>";
                 $('#pendingRideResult').html(html);
@@ -261,7 +285,13 @@ $(document).ready(function() {
                         status = "Cancelled";
                     }
 
-                    html += "<tr><td>"+ sr++ +"</td><td>"+msg[i]['ride_date']+"</td><td>"+msg[i]['pickup']+"</td><td>"+msg[i]['droplocation']+"</td><td>"+msg[i]['total_distance']+"</td><td>"+msg[i]['luggage']+"</td><td>"+msg[i]['total_fare']+"</td><td>"+msg[i]['cab']+"</td><td>"+status+"</td></tr>";
+                    if (msg[i]['luggage'] != "") {
+                        luggage = msg[i]['luggage'];
+                    } else {
+                        luggage = "--";
+                    }
+
+                    html += "<tr><td>"+ sr++ +"</td><td>"+msg[i]['ride_date']+"</td><td>"+msg[i]['pickup']+"</td><td>"+msg[i]['droplocation']+"</td><td>"+msg[i]['total_distance']+"</td><td>"+luggage+"</td><td>"+msg[i]['total_fare']+"</td><td>"+msg[i]['cab']+"</td><td>"+status+"</td></tr>";
                 }
                 html += "</table>";
                 $('#completeRideResult').html(html);
@@ -302,7 +332,13 @@ $(document).ready(function() {
                         status = "Cancelled";
                     }
 
-                    html += "<tr><td>"+ sr++ +"</td><td>"+msg[i]['ride_date']+"</td><td>"+msg[i]['pickup']+"</td><td>"+msg[i]['droplocation']+"</td><td>"+msg[i]['total_distance']+"</td><td>"+msg[i]['luggage']+"</td><td>"+msg[i]['total_fare']+"</td><td>"+msg[i]['cab']+"</td><td>"+status+"</td></tr>";
+                    if (msg[i]['luggage'] != "") {
+                        luggage = msg[i]['luggage'];
+                    } else {
+                        luggage = "--";
+                    }
+
+                    html += "<tr><td>"+ sr++ +"</td><td>"+msg[i]['ride_date']+"</td><td>"+msg[i]['pickup']+"</td><td>"+msg[i]['droplocation']+"</td><td>"+msg[i]['total_distance']+"</td><td>"+luggage+"</td><td>"+msg[i]['total_fare']+"</td><td>"+msg[i]['cab']+"</td><td>"+status+"</td></tr>";
                 }
                 html += "</table>";
                 $('#completeRideResult').html(html);

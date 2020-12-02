@@ -112,13 +112,13 @@ if (isset($_POST['cancle'])) {
                             <form action="pendingRide.php" method="post" class="cancleRide">
                                 <input type="hidden" name="rideid" 
                                 value="<?php echo $row['ride_id']; ?>">
-                                <input type="submit" value="Cancle" name="cancle">
+                                <input type="submit" value="Cancel" name="cancle">
                             </form>
                             <?php
                         } else if ($row['status'] == 2) {
                             echo "Complete";
                         } else {
-                            echo "Cancle";
+                            echo "Cancel";
                         }
                         ?>
                         </td>

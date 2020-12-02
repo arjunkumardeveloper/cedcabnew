@@ -107,13 +107,13 @@ $data = $Location->fetchLocation($Dbconn->conn);
                                     if ($row['is_available'] == 1) {
                                         ?>
                                         <a href="locationList.php?type=status&operation=deactive&id=<?php echo $row['id']; ?>" class="active">
-                                        Available</a>
+                                        Not Available</a>
 
                                         <?php
                                     } else {
                                         ?>
                                         <a href="locationList.php?type=status&operation=active&id=<?php echo $row['id']; ?>" class="active">
-                                        Not Available</a>
+                                        Available</a>
                                         <?php
                                     }
                                     ?>

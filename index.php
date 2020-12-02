@@ -13,11 +13,15 @@
  require 'header.php';
  require 'DbConnection.php';
  require 'Location.php';
+// echo $_SESSION['is_admin'];
+if (isset($_SESSION['is_admin'])&&$_SESSION['is_admin'] == 1) {
+    header('location: admin/index.php');
+}
 
 $Dbconn = new DbConnection();
 $Location = new Location();
 $data = $Location->fetchLocationAvai($Dbconn->conn);
-
+// print_r($data);
 
 ?>
     <div class="container-fluid">

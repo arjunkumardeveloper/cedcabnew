@@ -87,10 +87,12 @@ class Location
         $sql = "SELECT * FROM `tbl_location` WHERE `is_available` = 1 ";
         // return $sql;
         $res = mysqli_query($conn, $sql);
-        while ($data = mysqli_fetch_assoc($res)) {
-            $row[] = $data;
-        }
-        return $row;
+        // while ($data = mysqli_fetch_assoc($res)) {
+        //     $row[] = $data;
+        // }
+        // return $row;
+        // $data = mysqli_fetch_assoc($res);
+        return $res;
     }
 
     /**

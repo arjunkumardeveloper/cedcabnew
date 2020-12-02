@@ -28,7 +28,7 @@ $invoice = $Ride->fetchInvoice($id, $Dbconn->conn);
 <section>
     <div class="wrapper">
         <h3>Invoice</h3>
-        <div class="invoice">
+        <div class="invoice" id="invoice">
             <p><strong>Ride Request Date: </strong><?php echo $invoice['ride_date']; ?></p>
             <p><strong>Pickup Location: </strong><?php echo $invoice['pickup']; ?></p>
             <p><strong>Drop Location: </strong><?php echo $invoice['droplocation']; ?></p>
@@ -36,13 +36,25 @@ $invoice = $Ride->fetchInvoice($id, $Dbconn->conn);
             <p><strong>Luggage Weight: </strong><?php echo $invoice['luggage']; ?></p>
             <p><strong>Total Fare: </strong><?php echo $invoice['total_fare']; ?></p>
             <p><strong>Cab Type: </strong><?php echo $invoice['cab']; ?></p>
-            <a href="allRide.php" class="active">Back</a>
-            <a onclick="window.print()" class="active">Print Invoice</a>
+            <a href="completeRide.php" class="active" id="back">Back</a>
+            <a onclick="printPageArea('invoice')" class="active" id="active">Print Invoice</a>
         </div>
     </div>
 </section>
 
-
+<script>
+    function printPageArea(invoice){
+    document.getElementById('active').style.display = 'none';
+    document.getElementById('back').style.display = 'none';
+    var printContent = document.getElementById(invoice);
+    var WinPrint = window.open('', '', 'width=900,height=650');
+    WinPrint.document.write(printContent.innerHTML);
+    WinPrint.document.close();
+    WinPrint.focus();
+    WinPrint.print();
+    WinPrint.close();
+}
+</script>
 
 <?php
     require 'footer.php';

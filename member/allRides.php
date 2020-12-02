@@ -62,7 +62,7 @@
                 ?>
                     <tr>
                         <td><?php echo $sr++; ?></td>
-                        <td><?php echo date('d-M-Y', strtotime($row['ride_date'])); ?></td>
+                        <td><?php echo $row['ride_date']; ?></td>
                         <td><?php echo $row['pickup']; ?></td>
                         <td><?php echo $row['droplocation']; ?></td>
                         <td><?php echo $row['total_distance']; ?></td>
@@ -84,9 +84,9 @@
                             Pending..
                             <?php
                         } else if ($row['status'] == 2) {
-                            echo "Approved";
+                            echo "Completed";
                         } else {
-                            echo "Cancle";
+                            echo "Cancel";
                         }
                         ?>
                         </td>

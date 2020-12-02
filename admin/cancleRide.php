@@ -76,7 +76,7 @@ if (isset($_POST['submit'])) {
                         } else if ($row['status'] == 2) {
                             echo "Complete";
                         } else {
-                            echo "Cancle";
+                            echo "Cancel";
                         }
                         ?>
                         </td>

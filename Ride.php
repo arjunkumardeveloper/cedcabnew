@@ -42,7 +42,6 @@ class Ride
     /**
      * Function For Insert Ride
      * 
-     * @param ride_date      $ride_date      comment
      * @param pickup         $pickup         comment
      * @param droplocation   $droplocation   comment
      * @param total_distance $total_distance comment
@@ -53,10 +52,10 @@ class Ride
      * 
      * @return insertRide()
      */
-    function insertRide($ride_date, $pickup, $droplocation, $total_distance, $luggage, $total_fare, $cab, $conn)
+    function insertRide($pickup, $droplocation, $total_distance, $luggage, $total_fare, $cab, $conn)
     {   
         $uid = $_SESSION['userid'];
-        $sql = "INSERT INTO `tbl_ride` (`ride_date`, `pickup`, `droplocation`, `total_distance`, `luggage`, `total_fare`, `cab`, `customer_user_id`) VALUES ('$ride_date', '$pickup', '$droplocation', '$total_distance', '$luggage', '$total_fare', '$cab', '$uid')";
+        $sql = "INSERT INTO `tbl_ride` (`ride_date`, `pickup`, `droplocation`, `total_distance`, `luggage`, `total_fare`, `cab`, `customer_user_id`) VALUES (CURRENT_DATE(), '$pickup', '$droplocation', '$total_distance', '$luggage', '$total_fare', '$cab', '$uid')";
         // return $sql;
         // exit();
         if (mysqli_query($conn, $sql)) {
@@ -355,6 +354,7 @@ class Ride
         $user_id = $_SESSION['userid'];
         if ($data == 'ride_date') {
             // SELECT * FROM `tbl_ride` ORDER BY `ride_date` DESC
+            // SELECT * FROM `tbl_ride` WHERE `customer_user_id` = '$user_id' 
             $sql = "SELECT * FROM `tbl_ride` WHERE `customer_user_id` = '$user_id' ORDER BY `ride_date` DESC ";
         } else {
             $sql = "SELECT * FROM `tbl_ride` WHERE `customer_user_id` = '$user_id' ORDER BY `total_fare` DESC ";
@@ -559,12 +559,12 @@ class Ride
     function sortAllRide($data, $conn)
     {
         $row = array();
-        $user_id = $_SESSION['userid'];
+        // $user_id = $_SESSION['userid'];
         if ($data == 'ride_date') {
             // SELECT * FROM `tbl_ride` ORDER BY `ride_date` DESC
-            $sql = "SELECT * FROM `tbl_ride` ORDER BY `ride_date` DESC ";
+            $sql = "SELECT * FROM `tbl_ride` ORDER BY `ride_date` DESC";
         } else {
-            $sql = "SELECT * FROM `tbl_ride` ORDER BY `total_fare` DESC ";
+            $sql = "SELECT * FROM `tbl_ride` ORDER BY `total_fare` DESC";
         }
         // return $sql;
         // exit();
@@ -778,6 +778,38 @@ class Ride
     function fetchInvoice($id, $conn)
     {
         $sql = "SELECT * FROM `tbl_ride` WHERE `ride_id` = '$id' ";
+        $res = mysqli_query($conn, $sql);
+        $data = mysqli_fetch_assoc($res);
+        return $data;
+    }
+
+    /**
+     * Function for fetch last user pending ride
+     * 
+     * @param conn $conn comment
+     * 
+     * @return fetchLastUserPendingRide()
+     */
+    function fetchLastUserPendingRide($conn)
+    {
+        $user_id = $_SESSION['userid'];
+
+        $sql = "SELECT * FROM `tbl_ride` WHERE `customer_user_id` = '$user_id' AND `status` = 1 ORDER BY `ride_id` ASC LIMIT 1 ";
+        $res = mysqli_query($conn, $sql);
+        $data = mysqli_fetch_assoc($res);
+        return $data;
+    }
+
+    /**
+     * Function for fetch last pending ride in admin panel
+     * 
+     * @param conn $conn comment
+     * 
+     * @return fetchLastPendingRide()
+     */
+    function fetchLastPendingRide($conn)
+    {
+        $sql = "SELECT * FROM `tbl_ride` WHERE `status` = 1 ORDER BY `ride_id` DESC LIMIT 1 ";
         $res = mysqli_query($conn, $sql);
         $data = mysqli_fetch_assoc($res);
         return $data;

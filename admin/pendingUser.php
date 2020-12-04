@@ -58,7 +58,7 @@ if (isset($_GET['type']) && $_GET['type'] != "") {
                     <th>Mobile</th>
                     <th>status</th>
                     <th>Admin/User</th>
-                    <th>Action</th>
+                    <!-- <th>Action</th> -->
                 </tr>
             </thead>
             <tbody>
@@ -94,13 +94,13 @@ if (isset($_GET['type']) && $_GET['type'] != "") {
                             }
                             ?>
                         </td>
-                        <td>
+                        <!-- <td>
                             <form action="pendingUser.php" method="post" style="display: inline;">
                                 <input type="hidden" name="userid"
-                                value="<?php echo $row['user_id']; ?>">
-                                <input type="submit" value="Delete" name="submit">
+                                value="<?php// echo $row['user_id']; ?>">
+                                <input type="submit" value="Delete" onclick="return conmsg()" name="submit">
                             </form>
-                        </td>
+                        </td> -->
                     </tr>
 
                 <?php

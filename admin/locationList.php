@@ -59,7 +59,7 @@ $data = $Location->fetchLocation($Dbconn->conn);
                 <div class="form-group">
                     <label for="mobile">Distance<span>*</span></label>
                     <input type="text" name="dis" id="fetchdis" 
-                    class="form-control">
+                    class="form-control" onkeypress="return checkNum()">
                 </div>
                 <div class="form-group">
                     <input type="submit" id="updateInfo" value="Update" name="submit">
@@ -72,7 +72,7 @@ $data = $Location->fetchLocation($Dbconn->conn);
                     <tr>
                         <th>Sr.No.</th>
                         <th>Name</th>
-                        <th>Distance</th>
+                        <th>Distance (in km)</th>
                         <th>Available</th>
                         <th>Action</th>
                     </tr>
@@ -101,7 +101,7 @@ $data = $Location->fetchLocation($Dbconn->conn);
                                     <form action="locationList.php" method="post" style="display: inline;">
                                         <input type="hidden" id="locationid" name="locationid"
                                         value="<?php echo $row['id'] ?>">
-                                        <input type="submit" name="Delete" value="Delete">
+                                        <input type="submit" name="Delete" value="Delete" onclick='return conmsg()'>
                                     </form>
                                     <?php
                                     if ($row['is_available'] == 1) {
@@ -128,7 +128,16 @@ $data = $Location->fetchLocation($Dbconn->conn);
     </div>
 </section>
 
-
+<script>
+    function checkNum() {
+    if ((event.keyCode > 47) && (event.keyCode < 58)) {
+        return true;
+    } else {
+        alert("Please enter numeric value only !");
+        return false;
+    }
+}
+</script>
 
 <?php
     require 'footer.php';

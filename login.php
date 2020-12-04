@@ -113,11 +113,11 @@ if (isset($_POST['submit'])) {
                         echo $_COOKIE['username'];
                     }
                     ?>"
-                >
+                required>
             </div>
             <div class="form-group">
                 <label for="pass">Password</label>
-                <input type="password" name="pass" id="pass" class="form-control">
+                <input type="password" name="pass" id="pass" class="form-control" required>
             </div>
             <div class="form-group text-center">
                 <input type="submit" class="w-50 btn btn-primary" name="submit" 

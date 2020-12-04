@@ -1,9 +1,57 @@
+if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+}
+function conmsg() {
+    var arjun = confirm('Are you sure want to delete..?'); 
+    if (arjun == true) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function conapprove()
+{
+    var arjun = confirm('Are you sure want to Complete this ride..?'); 
+    if (arjun == true) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function concancle()
+{
+    var arjun = confirm('Are you sure want to Cancel this ride..?'); 
+    if (arjun == true) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 $(document).ready(function() {
     $('#submit').click(function() {
         // alert('click');
         var oldpass = $('#oldPass').val();
         var newpass = $('#newPass').val();
         var connewpass = $('#conNewPass').val();
+
+
+        if (oldpass == "") {
+            alert('Old password is required !');
+            return false;
+        } else if (newpass == "") {
+            alert('New password is required');
+            return false;
+        } else if (connewpass == "") {
+            alert('Confirm password is required');
+            return false;
+        } else if (oldpass === newpass) {
+            alert('Old password and new password could not be same !');
+            return false;
+        }
+
 
         // console.log(oldpass, newpass, connewpass);
         if (newpass == connewpass) {
@@ -20,6 +68,7 @@ $(document).ready(function() {
                 {
                     // alert(msg);
                     if (msg == true) {
+                        alert('Your password has been changed successfully !');
                         window.location = "logout.php";
                     } else {
                         alert("Old Password Does Not Match !");
@@ -81,6 +130,8 @@ $(document).ready(function() {
                     
                 }
             });
+        } else {
+            alert('All fields are required');
         }
     });
 
@@ -99,12 +150,12 @@ $(document).ready(function() {
             dataType : 'JSON',
             success : function(msg) 
             {
-                
-                var html = "<table><tr><th>Sr.No.</th><th>Ride Date</th><th>Pickup Location</th><th>Drop Location</th><th>Total Distance</th><th>Luggage Weight</th><th>Total Fare</th><th>Cab Type</th><th>Status</th><th>Customer id</th><th>Action</th></tr>";
+                console.log(msg);
+                var html = "<table><tr><th>Sr.No.</th><th>Ride Date</th><th>Pickup Location</th><th>Drop Location</th><th>Total Distance (in km)</th><th>Luggage Weight (in kg)</th><th>Total Fare (Rs)</th><th>Cab Type</th><th>Status</th><th>Customer id</th></tr>";
                 sr = 1;
                 for (var i = 0; i < msg.length; i++) {
                     if (msg[i]['status']==1) {
-                        status = '<form action="allRide.php" method="post" class="cancleRide"><input type="hidden" name="rideid" value="'+msg[i]["ride_id"]+'"><input type="submit" value="Pending" name="pending"></form><form action="allRide.php" method="post" class="cancleRide"><input type="hidden" name="rideid" value="'+msg[i]["ride_id"]+'"><input type="submit" value="Cancle" name="cancle"></form>';
+                        status = '<form action="allRide.php" method="post" class="cancleRide"><input type="hidden" name="rideid" value="'+msg[i]["ride_id"]+'"><input type="submit" value="Pending" name="pending" onclick="return conapprove()"></form><form action="allRide.php" method="post" class="cancleRide"><input type="hidden" name="rideid" value="'+msg[i]["ride_id"]+'"><input type="submit" value="Cancle" name="cancle" onclick="return concancle()"></form>';
                     } else if (msg[i]['status'] == 2) {
                         // var status = document.write("Approved");
                         status = "Approved";
@@ -118,7 +169,7 @@ $(document).ready(function() {
                         luggage = "--";
                     }
 
-                    html += "<tr><td>"+ sr++ +"</td><td>"+msg[i]['ride_date']+"</td><td>"+msg[i]['pickup']+"</td><td>"+msg[i]['droplocation']+"</td><td>"+msg[i]['total_distance']+"</td><td>"+luggage+"</td><td>"+msg[i]['total_fare']+"</td><td>"+msg[i]['cab']+"</td><td>"+status+"</td><td>"+msg[i]['customer_user_id']+"</td><td><form action='allRide.php' method='post'  style='display: inline;'><input type='hidden' name='rideid' value='"+msg[i]['ride_id']+"'><input type='submit' value='Delete' name='submit'></form></td></tr>";
+                    html += "<tr><td>"+ sr++ +"</td><td>"+msg[i]['ride_date']+"</td><td>"+msg[i]['pickup']+"</td><td>"+msg[i]['droplocation']+"</td><td>"+msg[i]['total_distance']+"</td><td>"+luggage+"</td><td>"+msg[i]['total_fare']+"</td><td>"+msg[i]['cab']+"</td><td>"+status+"</td><td>"+msg[i]['customer_user_id']+"</td></tr>";
                 }
                 html += "</table>";
                 $('#allRideResult').html(html);
@@ -144,11 +195,11 @@ $(document).ready(function() {
             {
                 // alert(msg);
                 console.log(msg);
-                var html = "<table><tr><th>Sr.No.</th><th>Ride Date</th><th>Pickup Location</th><th>Drop Location</th><th>Total Distance</th><th>Luggage Weight</th><th>Total Fare</th><th>Cab Type</th><th>Status</th><th>Customer id</th><th>Action</th></tr>";
+                var html = "<table><tr><th>Sr.No.</th><th>Ride Date</th><th>Pickup Location</th><th>Drop Location</th><th>Total Distance (in km)</th><th>Luggage Weight (in kg)</th><th>Total Fare (Rs)</th><th>Cab Type</th><th>Status</th><th>Customer id</th></tr>";
                 sr = 1;
                 for (var i = 0; i < msg.length; i++) {
                     if (msg[i]['status']==1) {
-                        status = '<form action="allRide.php" method="post" class="cancleRide"><input type="hidden" name="rideid" value="'+msg[i]["ride_id"]+'"><input type="submit" value="Pending" name="pending"></form><form action="allRide.php" method="post" class="cancleRide"><input type="hidden" name="rideid" value="'+msg[i]["ride_id"]+'"><input type="submit" value="Cancle" name="cancle"></form>';
+                        status = '<form action="allRide.php" method="post" class="cancleRide"><input type="hidden" name="rideid" value="'+msg[i]["ride_id"]+'"><input type="submit" value="Pending" name="pending" onclick="return conapprove()"></form><form action="allRide.php" method="post" class="cancleRide"><input type="hidden" name="rideid" value="'+msg[i]["ride_id"]+'"><input type="submit" value="Cancle" name="cancle" onclick="return concancle()"></form>';
                     } else if (msg[i]['status'] == 2) {
                         // var status = document.write("Approved");
                         status = "Approved";
@@ -163,7 +214,7 @@ $(document).ready(function() {
                         luggage = "--";
                     }
 
-                    html += "<tr><td>"+ sr++ +"</td><td>"+msg[i]['ride_date']+"</td><td>"+msg[i]['pickup']+"</td><td>"+msg[i]['droplocation']+"</td><td>"+msg[i]['total_distance']+"</td><td>"+luggage+"</td><td>"+msg[i]['total_fare']+"</td><td>"+msg[i]['cab']+"</td><td>"+status+"</td><td>"+msg[i]['customer_user_id']+"</td><td><form action='allRide.php' method='post'  style='display: inline;'><input type='hidden' name='rideid' value='"+msg[i]['ride_id']+"'><input type='submit' value='Delete' name='submit'></form></td></tr>";
+                    html += "<tr><td>"+ sr++ +"</td><td>"+msg[i]['ride_date']+"</td><td>"+msg[i]['pickup']+"</td><td>"+msg[i]['droplocation']+"</td><td>"+msg[i]['total_distance']+"</td><td>"+luggage+"</td><td>"+msg[i]['total_fare']+"</td><td>"+msg[i]['cab']+"</td><td>"+status+"</td><td>"+msg[i]['customer_user_id']+"</td></tr>";
                 }
                 html += "</table>";
                 $('#allRideResult').html(html);
@@ -193,11 +244,11 @@ $(document).ready(function() {
             {
                 // alert(msg);
                 console.log(msg);
-                var html = "<table><tr><th>Sr.No.</th><th>Ride Date</th><th>Pickup Location</th><th>Drop Location</th><th>Total Distance</th><th>Luggage Weight</th><th>Total Fare</th><th>Cab Type</th><th>Status</th><th>Customer id</th><th>Action</th></tr>";
+                var html = "<table><tr><th>Sr.No.</th><th>Ride Date</th><th>Pickup Location</th><th>Drop Location</th><th>Total Distance (in km)</th><th>Luggage Weight (in kg)</th><th>Total Fare (Rs)</th><th>Cab Type</th><th>Status</th><th>Customer id</th></tr>";
                 sr = 1;
                 for (var i = 0; i < msg.length; i++) {
                     if (msg[i]['status']==1) {
-                        status = '<form action="allRide.php" method="post" class="cancleRide"><input type="hidden" name="rideid" value="'+msg[i]["ride_id"]+'"><input type="submit" value="Pending" name="pending"></form><form action="allRide.php" method="post" class="cancleRide"><input type="hidden" name="rideid" value="'+msg[i]["ride_id"]+'"><input type="submit" value="Cancle" name="cancle"></form>';
+                        status = '<form action="allRide.php" method="post" class="cancleRide"><input type="hidden" name="rideid" value="'+msg[i]["ride_id"]+'"><input type="submit" value="Pending" name="pending" onclick="return conapprove()"></form><form action="allRide.php" method="post" class="cancleRide"><input type="hidden" name="rideid" value="'+msg[i]["ride_id"]+'"><input type="submit" value="Cancle" name="cancle" onclick="return concancle()"></form>';
                     } else if (msg[i]['status'] == 2) {
                         // var status = document.write("Approved");
                         status = "Approved";
@@ -212,7 +263,7 @@ $(document).ready(function() {
                         luggage = "--";
                     }
 
-                    html += "<tr><td>"+ sr++ +"</td><td>"+msg[i]['ride_date']+"</td><td>"+msg[i]['pickup']+"</td><td>"+msg[i]['droplocation']+"</td><td>"+msg[i]['total_distance']+"</td><td>"+luggage+"</td><td>"+msg[i]['total_fare']+"</td><td>"+msg[i]['cab']+"</td><td>"+status+"</td><td>"+msg[i]['customer_user_id']+"</td><td><form action='allRide.php' method='post'  style='display: inline;'><input type='hidden' name='rideid' value='"+msg[i]['ride_id']+"'><input type='submit' value='Delete' name='submit'></form></td></tr>";
+                    html += "<tr><td>"+ sr++ +"</td><td>"+msg[i]['ride_date']+"</td><td>"+msg[i]['pickup']+"</td><td>"+msg[i]['droplocation']+"</td><td>"+msg[i]['total_distance']+"</td><td>"+luggage+"</td><td>"+msg[i]['total_fare']+"</td><td>"+msg[i]['cab']+"</td><td>"+status+"</td><td>"+msg[i]['customer_user_id']+"</td></tr>";
                 }
                 html += "</table>";
                 $('#allRideResult').html(html);
@@ -241,11 +292,11 @@ $(document).ready(function() {
             {
                 // alert(msg);
                 console.log(msg);
-                var html = "<table><tr><th>Sr.No.</th><th>Ride Date</th><th>Pickup Location</th><th>Drop Location</th><th>Total Distance</th><th>Luggage Weight</th><th>Total Fare</th><th>Cab Type</th><th>Status</th><th>Customer id</th><th>Action</th></tr>";
+                var html = "<table><tr><th>Sr.No.</th><th>Ride Date</th><th>Pickup Location</th><th>Drop Location</th><th>Total Distance (in km)</th><th>Luggage Weight (in kg)</th><th>Total Fare (Rs)</th><th>Cab Type</th><th>Status</th><th>Customer id</th></tr>";
                 sr = 1;
                 for (var i = 0; i < msg.length; i++) {
                     if (msg[i]['status']==1) {
-                        status = '<form action="allRide.php" method="post" class="cancleRide"><input type="hidden" name="rideid" value="'+msg[i]["ride_id"]+'"><input type="submit" value="Pending" name="pending"></form><form action="allRide.php" method="post" class="cancleRide"><input type="hidden" name="rideid" value="'+msg[i]["ride_id"]+'"><input type="submit" value="Cancle" name="cancle"></form>';
+                        status = '<form action="allRide.php" method="post" class="cancleRide"><input type="hidden" name="rideid" value="'+msg[i]["ride_id"]+'"><input type="submit" value="Pending" name="pending" onclick="return conapprove()"></form><form action="allRide.php" method="post" class="cancleRide"><input type="hidden" name="rideid" value="'+msg[i]["ride_id"]+'"><input type="submit" value="Cancle" name="cancle" onclick="return concancle()"></form>';
                     } else if (msg[i]['status'] == 2) {
                         // var status = document.write("Approved");
                         status = "Approved";
@@ -260,7 +311,7 @@ $(document).ready(function() {
                         luggage = "--";
                     }
 
-                    html += "<tr><td>"+ sr++ +"</td><td>"+msg[i]['ride_date']+"</td><td>"+msg[i]['pickup']+"</td><td>"+msg[i]['droplocation']+"</td><td>"+msg[i]['total_distance']+"</td><td>"+luggage+"</td><td>"+msg[i]['total_fare']+"</td><td>"+msg[i]['cab']+"</td><td>"+status+"</td><td>"+msg[i]['customer_user_id']+"</td><td><form action='allRide.php' method='post'  style='display: inline;'><input type='hidden' name='rideid' value='"+msg[i]['ride_id']+"'><input type='submit' value='Delete' name='submit'></form></td></tr>";
+                    html += "<tr><td>"+ sr++ +"</td><td>"+msg[i]['ride_date']+"</td><td>"+msg[i]['pickup']+"</td><td>"+msg[i]['droplocation']+"</td><td>"+msg[i]['total_distance']+"</td><td>"+luggage+"</td><td>"+msg[i]['total_fare']+"</td><td>"+msg[i]['cab']+"</td><td>"+status+"</td><td>"+msg[i]['customer_user_id']+"</td></tr>";
                 }
                 html += "</table>";
                 $('#allRideResult').html(html);
@@ -290,7 +341,7 @@ $(document).ready(function() {
             {
                 // alert(msg);
                 console.log(msg);
-                var html = "<table><tr><th>Sr.No.</th><th>Ride Date</th><th>Pickup Location</th><th>Drop Location</th><th>Total Distance</th><th>Luggage Weight</th><th>Total Fare</th><th>Cab Type</th><th>Status</th><th>Customer id</th><th>Action</th></tr>";
+                var html = "<table><tr><th>Sr.No.</th><th>Ride Date</th><th>Pickup Location</th><th>Drop Location</th><th>Total Distance (in km)</th><th>Luggage Weight (in kg)</th><th>Total Fare (Rs)</th><th>Cab Type</th><th>Status</th><th>Customer id</th><th>Action</th></tr>";
                 sr = 1;
                 for (var i = 0; i < msg.length; i++) {
                     if (msg[i]['status']==1) {
@@ -309,7 +360,7 @@ $(document).ready(function() {
                         luggage = "--";
                     }
 
-                    html += "<tr><td>"+ sr++ +"</td><td>"+msg[i]['ride_date']+"</td><td>"+msg[i]['pickup']+"</td><td>"+msg[i]['droplocation']+"</td><td>"+msg[i]['total_distance']+"</td><td>"+luggage+"</td><td>"+msg[i]['total_fare']+"</td><td>"+msg[i]['cab']+"</td><td>"+status+"</td><td>"+msg[i]['customer_user_id']+"</td><td><form action='allRide.php' method='post'  style='display: inline;'><input type='hidden' name='rideid' value='"+msg[i]['ride_id']+"'><input type='submit' value='Delete' name='submit'></form></td></tr>";
+                    html += "<tr><td>"+ sr++ +"</td><td>"+msg[i]['ride_date']+"</td><td>"+msg[i]['pickup']+"</td><td>"+msg[i]['droplocation']+"</td><td>"+msg[i]['total_distance']+"</td><td>"+luggage+"</td><td>"+msg[i]['total_fare']+"</td><td>"+msg[i]['cab']+"</td><td>"+status+"</td><td>"+msg[i]['customer_user_id']+"</td><td><a href=invoice.php?id="+msg[i]['ride_id']+">Invoice</a></td></tr>";
                 }
                 html += "</table>";
                 $('#completeRideResult').html(html);
@@ -339,7 +390,7 @@ $(document).ready(function() {
             {
                 // alert(msg);
                 console.log(msg);
-                var html = "<table><tr><th>Sr.No.</th><th>Ride Date</th><th>Pickup Location</th><th>Drop Location</th><th>Total Distance</th><th>Luggage Weight</th><th>Total Fare</th><th>Cab Type</th><th>Status</th><th>Customer id</th><th>Action</th></tr>";
+                var html = "<table><tr><th>Sr.No.</th><th>Ride Date</th><th>Pickup Location</th><th>Drop Location</th><th>Total Distance (in km)</th><th>Luggage Weight (in kg)</th><th>Total Fare (Rs)</th><th>Cab Type</th><th>Status</th><th>Customer id</th><th>Action</th></tr>";
                 sr = 1;
                 for (var i = 0; i < msg.length; i++) {
                     if (msg[i]['status']==1) {
@@ -358,7 +409,7 @@ $(document).ready(function() {
                         luggage = "--";
                     }
 
-                    html += "<tr><td>"+ sr++ +"</td><td>"+msg[i]['ride_date']+"</td><td>"+msg[i]['pickup']+"</td><td>"+msg[i]['droplocation']+"</td><td>"+msg[i]['total_distance']+"</td><td>"+luggage+"</td><td>"+msg[i]['total_fare']+"</td><td>"+msg[i]['cab']+"</td><td>"+status+"</td><td>"+msg[i]['customer_user_id']+"</td><td><form action='allRide.php' method='post'  style='display: inline;'><input type='hidden' name='rideid' value='"+msg[i]['ride_id']+"'><input type='submit' value='Delete' name='submit'></form></td></tr>";
+                    html += "<tr><td>"+ sr++ +"</td><td>"+msg[i]['ride_date']+"</td><td>"+msg[i]['pickup']+"</td><td>"+msg[i]['droplocation']+"</td><td>"+msg[i]['total_distance']+"</td><td>"+luggage+"</td><td>"+msg[i]['total_fare']+"</td><td>"+msg[i]['cab']+"</td><td>"+status+"</td><td>"+msg[i]['customer_user_id']+"</td><td><a href=invoice.php?id="+msg[i]['ride_id']+">Invoice</a></td></tr>";
                 }
                 html += "</table>";
                 $('#completeRideResult').html(html);
@@ -369,5 +420,54 @@ $(document).ready(function() {
             }
         });
     });
+
+
+    $('#userSort').change(function(){
+        let selectData = $(this).val();
+        // alert(selectData);
+        $('#userTable').hide();
+
+        $.ajax({
+            url : 'ajaxRequest.php',
+            type : 'POST',
+            data : {
+                sdata : selectData,
+                action : 'userSort'
+            },
+            dataType : 'JSON',
+            success: function(msg)
+            {
+                // alert(msg);
+                console.log(msg);
+                var html = "<table><tr><th>Sr.No.</th><th>Date</th><th>Username</th><th>Name</th><th>Mobile</th><th>Status</th><th>Admin/User</th></tr>";
+                sr = 1;
+                for (var i = 0; i < msg.length; i++) {
+                    
+
+                    if (msg[i]['is_admin'] == 1) {
+                        admin = "Admin";
+
+                        // del = "--";
+                        
+                    } else {
+                        admin = "User";
+                        // del = "<form action='approvedUser.php' method='post'><input type='hidden' name='userid' value='"+msg[i]['user_id']+"'><input type='submit' value='Delete' onclick='return conmsg()' name='submit'></form>";
+                    }
+
+
+                    html += "<tr><td>"+ sr++ +"</td><td>"+msg[i]['dateofsignup']+"</td><td>"+msg[i]['user_name']+"</td><td>"+msg[i]['name']+"</td><td>"+msg[i]['mobile']+"</td><td>Approved</td><td>"+admin+"</td></tr>";
+                }
+                html += "</table>";
+                $('#userSortResult').html(html);
+            },
+            error : function(error)
+            {
+                alert('error');
+            }
+        });
+
+    });
+
+
 });
 

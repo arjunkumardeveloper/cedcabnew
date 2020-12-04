@@ -7,6 +7,22 @@ body {
     padding: 16px;
     color: white;
 }
+.navbar-brand {
+    color: #CCE500;
+    font-size: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 53px;
+}
+.brandspan {
+    color: black;
+}
+.sessname {
+    position: absolute;
+    right: 65px;
+    font-size: 21px;
+    color: white;
+}
 .sidebar {
     background: #393939;
     width: 22%;
@@ -43,6 +59,7 @@ section .wrapper {
 }
 .wrapper table {
     width: 100%;
+    margin-bottom: 8px;
 }
 .wrapper table, tr {
     padding: 10px;
@@ -160,3 +177,18 @@ section .wrapper .mainDiv .box1 {
 .invoice strong {
     color: gray;
 }
+select#userSort {
+    width: 24%;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+/* #animate {
+    animation: mymove 5s infinite;
+}
+@keyframes mymove {
+    0%   {background: red;}
+    25%  {background: green;}
+    75%  {background: blue}
+    100% {background: yellow;}
+  } */

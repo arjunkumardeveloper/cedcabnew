@@ -26,8 +26,10 @@
         <label for="">Sort</label>
         <select id="sortDataCompleteRide">
             <option value="">---Select---</option>
-            <option value="ride_date">By Ride Date</option>
-            <option value="total_fare">By Fare</option>
+            <option value="descride_date">By Ride Date In DESC Order</option>
+            <option value="ascride_date">By Ride Date In ASC Order</option>
+            <option value="desctotal_fare">By Fare In DESC Order</option>
+            <option value="asctotal_fare">By Fare In ASC Order</option>
         </select>
         <label for="">Filter</label>
         <select id="completeRideFilter">
@@ -47,9 +49,9 @@
                     <th>Ride Date</th>
                     <th>PickUp Location</th>
                     <th>Drop Location</th>
-                    <th>Total Distance</th>
-                    <th>Luggage Weight</th>
-                    <th>Total Fare</th>
+                    <th>Total Distance (in km)</th>
+                    <th>Luggage Weight (in kg)</th>
+                    <th>Total Fare (Rs)</th>
                     <th>Cab Type</th>
                     <th>Status</th>
                 </tr>

@@ -37,12 +37,14 @@ if (isset($_POST['pending'])) {
     $rideid = $_POST['rideid'];
     // echo $rideid;
     $msg = $Ride->approvedRide($rideid, $Dbconn->conn);
+    // header('location:index.php');
 }
 
 if (isset($_POST['cancle'])) {
     $rideid = $_POST['rideid'];
 
     $msg = $Ride->cancleRide($rideid, $Dbconn->conn);
+    // header('location:index.php');
 }
 
 $sr = 1;
@@ -62,9 +64,9 @@ $data = $Ride->fetchLastPendingRide($Dbconn->conn);
                 <th>Ride Date</th>
                 <th>PickUp Location</th>
                 <th>Drop Location</th>
-                <th>Total Distance</th>
-                <th>Luggage Weight</th>
-                <th>Total Fare</th>
+                <th>Total Distance(in km)</th>
+                <th>Luggage Weight(in kg)</th>
+                <th>Total Fare(Rs.)</th>
                 <th>Cab Type</th>
                 <th>Status</th>
                 <th>Action</th>
@@ -88,7 +90,7 @@ $data = $Ride->fetchLastPendingRide($Dbconn->conn);
                             </td>
                         <td><?php echo $data['total_fare']; ?></td>
                         <td><?php echo $data['cab']; ?></td>
-                        <td>
+                        <td id="animate">
                         <?php
                         if ($data['status'] == 1) {
                             ?>
@@ -108,12 +110,12 @@ $data = $Ride->fetchLastPendingRide($Dbconn->conn);
                             <form action="index.php" method="post">
                                 <input type="hidden" name="rideid" 
                                 value="<?php echo $data['ride_id']; ?>">
-                                <input type="submit" value="Pending" name="pending">
+                                <input type="submit" value="Approve" name="pending" onclick="return conapprove()">
                             </form>
                             <form action="index.php" method="post" class="cancleRide">
                                 <input type="hidden" name="rideid" 
                                 value="<?php echo $data['ride_id']; ?>">
-                                <input type="submit" value="Cancel" name="cancle">
+                                <input type="submit" value="Cancel" name="cancle" onclick="return concancle()">
                             </form>
                             <?php
                         } else if ($data['status'] == 2) {

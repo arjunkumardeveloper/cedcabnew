@@ -19,8 +19,8 @@ $Location = new Location();
 $Dbconn = new DbConnection();
 
 if (isset($_POST['submit'])) {
-    $location = $_POST['location'];
-    $distance = $_POST['distance'];
+    $location = trim($_POST['location']);
+    $distance = trim($_POST['distance']);
 
     
     $msg = $Location->addLocation($location, $distance, $Dbconn->conn);

@@ -3,6 +3,7 @@ function cabType() {
     var cab = document.getElementById('cab').value;
     if (cab == "cedmicro") {
         document.getElementById('luggage').style.display = 'none';
+        document.getElementById('lugg').value = '';
     } else {
         document.getElementById('luggage').style.display = 'flex';
     }
@@ -14,6 +15,7 @@ function checkNum() {
         alert("Please enter numeric value only !");
         return false;
     }
+    
 }
 // $('#submit').click(function(){
 //     alert('hi');
@@ -39,6 +41,11 @@ $(document).ready(function() {
         var drop = document.getElementById('drop').value;
         var cab = document.getElementById('cab').value;
         var lugg = document.getElementById('lugg').value;
+        // alert(lugg.length);
+        // if (lugg.length < 4) {
+        //     alert("You can't take more than thousand weight !");
+        //     return false;
+        // }
         // alert(pickup, drop, cab, lugg);
         if (pickup == "") {
             alert("Pickup field is mandatory");
@@ -66,23 +73,13 @@ $(document).ready(function() {
                 },
                 dataType : 'json',
                 success : function(result) {
-                    // alert(result);
-                    // document.getElementById('price').innerHTML = "Price: "+result['price']+"/-";
-                    // document.getElementById('distance').innerHTML = "Distance: "+result['distance']+" KM";
+                    
                     if (result) {
-                        // document.getElementById('calculate').innerHTML = "Total Fare: " + result['price'] + "/-";
+                        
+                        console.log(result);
+                        document.getElementById('msg-body').innerHTML = "Total Distance: " + result['distance'] + "KM <br> Total Fare: " + result['price'] + "/- <br> Pickup Location: " + result['pickup'] + "<br> Drop Location: " + result['drop'] + "<br> Cab Type: " + result['cab'] + "<br> Luggage: " + result['lugg'] + " KG";
 
-                        // $('#sendRequest').show();msg-body
-// alert(result);
-console.log(result);
-                        document.getElementById('msg-body').innerHTML = "Total Distance: " + result['distance'] + "KM <br> Total Fare: " + result['price'] + "/- <br> Pickup Location: " + result['pickup'] + "<br> Drop Location: " + result['drop'] + "<br> Cab Type: " + result['cab'] + "<br> Luggage: " + result['lugg'];
-
-                        // document.getElementById('distance').innerHTML = "Total Distance: "+result['distance']+" KM";
-                        // document.getElementById('price').innerHTML = "Total Fare: "+result['price']+"/-";
-                        // document.getElementById('pickloc').innerHTML = "Pickup Location: "+result['pickup'];
-                        // document.getElementById('droploc').innerHTML = "Drop Location: "+result['drop'];
-                        // document.getElementById('cab').innerHTML = "Drop Location: "+result['cab'];
-                        // alert('success');
+                        
                     }
                     // console.log(result['price']);
                 },
@@ -93,9 +90,7 @@ console.log(result);
            });
         }
     });
-    // $('input, select').focus(function() {
-    //     document.getElementById('calculate').innerHTML = "Calculate Fare";
-    // });
+    
     $('#sendRequest').click(function(){
         // alert('hii');
         var pickup = document.getElementById('pickup').value;

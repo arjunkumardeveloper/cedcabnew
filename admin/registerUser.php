@@ -58,7 +58,7 @@ if (isset($_POST['submit'])) {
                     <th>Mobile</th>
                     <th>status</th>
                     <th>Admin/User</th>
-                    <th>Action</th>
+                    <!-- <th>Action</th> -->
                 </tr>
             </thead>
             <tbody>
@@ -94,19 +94,19 @@ if (isset($_POST['submit'])) {
                             }
                             ?>
                         </td>
-                        <td>
+                        <!-- <td>
                         <?php
-                        if ($row['is_admin'] == 1) {
-                            echo "--";
-                        } else {
+                        // if ($row['is_admin'] == 1) {
+                        //     echo "--";
+                        // } else {
                         ?>
                             <form action="registerUser.php" method="post">
                                 <input type="hidden" name="userid"
-                                value="<?php echo $row['user_id']; ?>">
-                                <input type="submit" value="Delete" name="submit">
+                                value="<?php //echo $row['user_id']; ?>">
+                                <input type="submit" value="Delete" onclick="return conmsg()" name="submit">
                             </form>
-                        </td>
-                        <?php }?>
+                        </td> -->
+                        <?php //}?>
                     </tr>
 
                 <?php

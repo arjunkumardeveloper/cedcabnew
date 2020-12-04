@@ -37,13 +37,14 @@ if (isset($_POST['submit'])) {
                     <th>Ride Date</th>
                     <th>PickUp Location</th>
                     <th>Drop Location</th>
-                    <th>Total Distance</th>
-                    <th>Luggage Weight</th>
-                    <th>Total Fare</th>
+                    <th>Total Distance (in km)</th>
+                    <th>Luggage Weight (in kg)</th>
+                    <th>Total Fare (Rs)</th>
                     <th>Cab Type</th>
                     <th>Status</th>
                     <th>Customer Id</th>
-                    <th>Action</th>
+                    <th>Customer Name</th>
+                    <!-- <th>Action</th> -->
                 </tr>
             </thead>
             <tbody>
@@ -84,13 +85,16 @@ if (isset($_POST['submit'])) {
                         <?php echo $row['customer_user_id']; ?>
                         </td>
                         <td>
+                        <?php echo $row['name']; ?>
+                        </td>
+                        <!-- <td>
                             <form action="cancleRide.php" method="post">
                                 <input type="hidden" name="rideid"
-                                value="<?php echo $row['ride_id']; ?>">
-                                <input type="submit" value="Delete" name="submit">
+                                value="<?php// echo $row['ride_id']; ?>">
+                                <input type="submit" value="Delete" name="submit" onclick='return conmsg()'>
                             </form>
                             
-                        </td>
+                        </td> -->
                     </tr>
 
                 <?php

@@ -328,6 +328,37 @@ class User
         $row = mysqli_fetch_row($res);
         return $row;
     }
+
+    /**
+     * Function for sort userDetails by admin
+     * 
+     * @param data $data comment
+     * @param conn $conn comment
+     * 
+     * @return userSortByAdmin()
+     */
+    function userSortByAdmin($data, $conn)
+    {
+        $row = array();
+
+        if ($data == 'descuname') {
+            $sql = "SELECT * FROM `tbl_user` WHERE `isblock` = 1 ORDER BY `user_name` DESC ";
+        } else if ($data == 'ascuname') {
+            $sql = "SELECT * FROM `tbl_user` WHERE `isblock` = 1 ORDER BY `user_name` ASC ";
+        } else if ($data == 'descdate') {
+            $sql = "SELECT * FROM `tbl_user` WHERE `isblock` = 1 ORDER BY `dateofsignup` DESC ";
+        } else if ($data == 'ascdate') {
+            $sql = "SELECT * FROM `tbl_user` WHERE `isblock` = 1 ORDER BY `dateofsignup` ASC ";
+        } else {
+            $sql = "SELECT * FROM `tbl_user` WHERE `isblock` = 1";
+        }
+
+        $res = mysqli_query($conn, $sql);
+        while ($data = mysqli_fetch_assoc($res)) {
+            $row[] = $data;
+        }
+        return $row;
+    }
 }
 
 

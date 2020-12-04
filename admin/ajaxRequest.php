@@ -90,4 +90,11 @@ if ($_POST['action'] == 'compeleteRideFilter') {
     echo json_encode($filterCompleteRide);
 }
 
+if ($_POST['action'] == 'userSort') {
+    $sdata = $_POST['sdata'];
+
+    $userSort = $User->userSortByAdmin($sdata, $Dbconn->conn);
+    echo json_encode($userSort);
+}
+
 ?>

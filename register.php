@@ -25,12 +25,12 @@ if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 0) {
 $insert = '';
 
 if (isset($_POST['submit'])) {
-    $user_name = $_POST['username'];
-    $name = $_POST['name'];
+    $user_name = trim($_POST['username']);
+    $name = trim($_POST['name']);
     $tdate = date('Y-m-d');
-    $mobile = $_POST['mobile'];
-    $pass = $_POST['pass'];
-    $repass = $_POST['repass'];
+    $mobile = trim($_POST['mobile']);
+    $pass = trim($_POST['pass']);
+    $repass = trim($_POST['repass']);
 
     $User = new User();
     $Dbconn = new DbConnection();
@@ -56,7 +56,7 @@ if (isset($_POST['submit'])) {
     <div class="wrapper">
         <p><?php echo $insert; ?></p>
         <h3>Registration Page</h3>
-        <form action="register.php" method="post">
+        <form action="register.php" method="post" onsubmit="return validate()">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" class="form-control" name="username" 
@@ -70,7 +70,7 @@ if (isset($_POST['submit'])) {
             <div class="form-group">
                 <label for="mobile">Mobile</label>
                 <input type="text" name="mobile" id="mobile" 
-                class="form-control" onkeypress="return checkNum()" required>
+                class="form-control" required>
             </div>
             <div class="form-group">
                 <label for="pass">Password</label>
@@ -84,14 +84,23 @@ if (isset($_POST['submit'])) {
             </div>
             <div class="form-group text-center">
                 <input type="submit" class="w-50 btn btn-primary" name="submit" 
-                id="submit" value="Register">
+                id="submit" value="Register" >
             </div>
         </form>
     </div>
 </div>
 
 <script>
-    
+    function validate(){  
+        var num=document.getElementById("mobile").value;  
+        if (isNaN(num)){    
+            alert("You can enter only numeric value in mobile number field !");
+            document.getElementById("mobile").focus();
+            return false;  
+        } else {  
+            return true;  
+        }  
+    } 
 </script>
 </body>
 </html>

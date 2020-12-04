@@ -22,10 +22,17 @@ if (isset($_SESSION['ride'])) {
     unset($_SESSION['ride']);
 }
 
+if (isset($_POST['cancle'])) {
+    $rideid = $_POST['rideid'];
+
+    $msg = $Ride->cancleRide($rideid, $Dbconn->conn);
+}
+
 $totalSpent = $Ride->totalCabSpent($Dbconn->conn);
 $pendingRides = $Ride->totalPendingRides($Dbconn->conn);
 // print_r($pendingRides);
 $allRidesTotal = $Ride->allRidesTotal($Dbconn->conn);
+
 
 ?>
 <section>
@@ -80,11 +87,12 @@ $allRidesTotal = $Ride->allRidesTotal($Dbconn->conn);
                 <th>Ride Date</th>
                 <th>PickUp Location</th>
                 <th>Drop Location</th>
-                <th>Total Distance</th>
-                <th>Luggage Weight</th>
-                <th>Total Fare</th>
+                <th>Total Distance (in km)</th>
+                <th>Luggage Weight (in kg)</th>
+                <th>Total Fare (Rs)</th>
                 <th>Cab Type</th>
                 <th>Status</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -117,6 +125,13 @@ $allRidesTotal = $Ride->allRidesTotal($Dbconn->conn);
                             echo "Cancle";
                         }
                         ?>
+                        </td>
+                        <td>
+                            <form action="index.php" method="post" class="cancleRide">
+                                <input type="hidden" name="rideid" 
+                                value="<?php echo $data['ride_id']; ?>">
+                                <input type="submit" value="Cancel" name="cancle" onclick="return concancle()">
+                            </form>
                         </td>
                     </tr>
 

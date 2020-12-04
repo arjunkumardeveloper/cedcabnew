@@ -68,7 +68,7 @@ $Dbconn->conn;
                 <div class="form-group">
                     <label for="name">Name<span>*</span></label>
                     <input type="text" name="name" id="fetchname" 
-                    class="form-control">
+                    class="form-control" onkeypress="return checkChar()">
                 </div>
                 <div class="form-group">
                     <label for="mobile">Mobile<span>*</span></label>
@@ -84,13 +84,21 @@ $Dbconn->conn;
 </section>
 <script>
     function checkNum() {
-    if ((event.keyCode > 47) && (event.keyCode < 58)) {
-        return true;
-    } else {
-        alert("Please enter numeric value only !");
-        return false;
+        if ((event.keyCode > 47) && (event.keyCode < 58)) {
+            return true;
+        } else {
+            alert("Please enter numeric value only !");
+            return false;
+        }
     }
-}
+    function checkChar() {
+        if ((event.keyCode > 64) && (event.keyCode < 123)) {
+            return true;
+        } else {
+            alert("Please enter alphabet value only !");
+            return false;
+        }
+    }
 </script>
 <?php
     require 'footer.php';

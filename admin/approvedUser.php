@@ -30,9 +30,18 @@ if (isset($_POST['submit'])) {
 ?>
 <section>
     <div class="wrapper">
-        <h3>Approved User</h3>
     <p><?php echo $msg; ?></p>
-        <table>
+        <h3>Approved User</h3>
+        <label>Sort</label>
+        <select id="userSort">
+            <option value="">--Select--</option>
+            <option value="descuname">Sort By Username In DESC Order</option>
+            <option value="ascuname">Sort By Username In ASC Order</option>
+            <option value="descdate">Sort By Date In DESC Order</option>
+            <option value="ascdate">Sort By Date In ASC Order</option>
+        </select>
+        <div id="userSortResult"></div>
+        <table id="userTable">
             <thead>
                 <tr>
                     <th>Sr.No.</th>
@@ -42,7 +51,7 @@ if (isset($_POST['submit'])) {
                     <th>Mobile</th>
                     <th>status</th>
                     <th>Admin/User</th>
-                    <th>Action</th>
+                    <!-- <th>Action</th> -->
                 </tr>
             </thead>
             <tbody>
@@ -75,19 +84,19 @@ if (isset($_POST['submit'])) {
                             }
                             ?>
                         </td>
-                        <td>
+                        <!-- <td>
                         <?php
-                        if ($row['is_admin'] == 1) {
-                            echo "--";
-                        } else {
+                        //if ($row['is_admin'] == 1) {
+                         //   echo "--";
+                       // } else {
                             ?>
                             <form action="approvedUser.php" method="post">
                                 <input type="hidden" name="userid"
-                                value="<?php echo $row['user_id']; ?>">
-                                <input type="submit" value="Delete" name="submit">
+                                value="<?php// echo $row['user_id']; ?>">
+                                <input type="submit" value="Delete" onclick="return conmsg()" name="submit">
                             </form>
-                        <?php } ?>
-                        </td>
+                        <?php// } ?>
+                        </td> -->
                     </tr>
 
                 <?php

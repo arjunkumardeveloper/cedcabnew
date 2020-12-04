@@ -36,16 +36,16 @@ if (isset($_POST['submit'])) {
         <h3>Add Location</h3>
         <p><?php echo $msg; ?></p>
         <div class="container">
-            <form action="addLocation.php" method="post">
+            <form action="addLocation.php" method="post" onsubmit="return validate()">
                 <div class="form-group">
                     <label for="location">Add Location</label>
                     <input type="text" name="location" id="location" 
                     class="form-control" required>
                 </div>
                 <div class="form-group">
-                    <label for="distance">Add Distance</label>
+                    <label for="distance">Add Distance (in km)</label>
                     <input type="text" name="distance" id="distance" 
-                    class="form-control" required>
+                    class="form-control" onkeypress="return checkNum()" required>
                 </div>
                 <div class="form-group">
                     <input type="submit" value="Add Location" name="submit">
@@ -55,7 +55,47 @@ if (isset($_POST['submit'])) {
     </div>
 </section>
 
+<script>
+    function checkNum() {
+        if ((event.keyCode > 47) && (event.keyCode < 58)) {
+            return true;
+        } else {
+            alert("Please enter numeric value only !");
+            return false;
+        }   
+    }
+    function checkChar() {
+        if ((event.keyCode > 64) && (event.keyCode < 123)) {
+            return true;
+        } else {
+            alert("Please enter alphabet value only !");
+            return false;
+        }
+    }
 
+    function validate() {  
+        // $letter = /^[a-zA-Z0-9_]+$/;
+        // var num=document.getElementById("location").value;  
+        // if (!isNaN(num)){    
+        //     alert("You can't enter only numeric value !");
+        //     document.getElementById("location").focus();
+        //     return false;  
+        // } else if (!(num.match(letter))) {
+        //     alert("Special Character are not allowed !");
+        //     return false;
+        // } else {  
+        //     return true;  
+        // }  
+        var checkString = document.getElementById("location").value;
+        if (checkString != "") {
+            if ( /[^A-Za-z\d]/.test(checkString)) {
+            alert("Please enter only letter and numeric characters");
+            document.getElementById("location").focus();
+            return (false);
+        }
+    }
+    }        
+</script>
 
 <?php
     require 'footer.php';

@@ -43,7 +43,7 @@ if (($_SESSION['is_admin'] == 1)) {
 </head>
 <body>
     <div class="wrapper">
-        <div class="heading"><a class="navbar-brand" href="#">CED <span class="brandspan">CAB</span></a><span class="sessname">Hi, <?php echo $_SESSION['name']; ?></span></div>
+        <div class="heading"><a class="navbar-brand" href="index.php">CED <span class="brandspan">CAB</span></a><span class="sessname">Hi, <?php echo $_SESSION['name']; ?></span></div>
         <div class="sidebar">
             <ul>
                 <a href="index.php">

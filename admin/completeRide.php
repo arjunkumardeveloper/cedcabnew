@@ -33,8 +33,10 @@ if (isset($_POST['submit'])) {
         <label for="">Sort</label>
         <select id="compeleteRideSort">
             <option value="">---Select---</option>
-            <option value="ride_date">By Ride Date</option>
-            <option value="total_fare">By Fare</option>
+            <option value="descride_date">By Ride Date In DESC Order</option>
+            <option value="ascride_date">By Ride Date In ASC Order</option>
+            <option value="desctotal_fare">By Fare In DESC Order</option>
+            <option value="asctotal_fare">By Fare In ASC Order</option>
         </select>
         <label for="">Filter</label>
         <select id="compeleteRideFilter">
@@ -56,12 +58,13 @@ if (isset($_POST['submit'])) {
                     <th>Ride Date</th>
                     <th>PickUp Location</th>
                     <th>Drop Location</th>
-                    <th>Total Distance</th>
-                    <th>Luggage Weight</th>
-                    <th>Total Fare</th>
+                    <th>Total Distance (in km)</th>
+                    <th>Luggage Weight (in kg)</th>
+                    <th>Total Fare (Rs)</th>
                     <th>Cab Type</th>
                     <th>Status</th>
                     <th>Customer Id</th>
+                    <!-- <th>Customer Name</th> -->
                     <th>Action</th>
                 </tr>
             </thead>
@@ -102,12 +105,15 @@ if (isset($_POST['submit'])) {
                         <td>
                         <?php echo $row['customer_user_id']; ?>
                         </td>
+                        <!-- <td>
+                        <?php //echo $row['name']; ?>
+                        </td> -->
                         <td>
-                            <form action="completeRide.php" method="post">
+                            <!-- <form action="completeRide.php" method="post">
                                 <input type="hidden" name="rideid"
-                                value="<?php echo $row['ride_id']; ?>">
-                                <input type="submit" value="Delete" name="submit">
-                            </form>
+                                value="<?php// echo $row['ride_id']; ?>">
+                                <input type="submit" value="Delete" name="submit" onclick='return conmsg()'>
+                            </form> -->
                             <a href="invoice.php?id=<?php echo $row['ride_id'] ?>">Invoice</a>
                         </td>
                     </tr>

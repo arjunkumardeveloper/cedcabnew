@@ -54,14 +54,14 @@ class User
         $query = $conn->query($sql);
         
         if ($query->num_rows > 0) {
-            $msg = "<p class='text-danger'>Username Already Exists</p>";
+            $msg = "Username Already Exists";
             return $msg;
         } else {
 
             
             $sql = "INSERT INTO `tbl_user` (`user_name`, `name`, `dateofsignup`, `mobile`, `password`) VALUES ('$user_name', '$name', '$dateofsignup', '$mobile', '$password' ) ";
             if ($conn->query($sql)) {
-                $msg = "<p class='text-success'>Registration Successfully</p>";
+                $msg = "Registration Successfully";
             } else {
                 $msg = "Registration Faild...try again";
             }

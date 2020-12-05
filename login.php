@@ -27,8 +27,8 @@ if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 0) {
 $insert = '';
 // print_r($_SESSION['ride']);
 if (isset($_POST['submit'])) {
-    $user_name = $_POST['username'];
-    $pass = $_POST['pass'];
+    $user_name = trim($_POST['username']);
+    $pass = trim($_POST['pass']);
 
     $User = new User();
     $Ride = new Ride();

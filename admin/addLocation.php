@@ -36,7 +36,7 @@ if (isset($_POST['submit'])) {
         <h3>Add Location</h3>
         <p><?php echo $msg; ?></p>
         <div class="container">
-            <form action="addLocation.php" method="post" onsubmit="return validate()">
+            <form action="addLocation.php" method="post" >
                 <div class="form-group">
                     <label for="location">Add Location</label>
                     <input type="text" name="location" id="location" 
@@ -48,7 +48,7 @@ if (isset($_POST['submit'])) {
                     class="form-control" onkeypress="return checkNum()" required>
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="Add Location" name="submit">
+                    <input type="submit" value="Add Location" name="submit" onclick="return validate()">
                 </div>
             </form>
         </div>
@@ -74,26 +74,20 @@ if (isset($_POST['submit'])) {
     }
 
     function validate() {  
-        // $letter = /^[a-zA-Z0-9_]+$/;
-        // var num=document.getElementById("location").value;  
-        // if (!isNaN(num)){    
-        //     alert("You can't enter only numeric value !");
-        //     document.getElementById("location").focus();
-        //     return false;  
-        // } else if (!(num.match(letter))) {
-        //     alert("Special Character are not allowed !");
-        //     return false;
-        // } else {  
-        //     return true;  
-        // }  
-        var checkString = document.getElementById("location").value;
-        if (checkString != "") {
-            if ( /[^A-Za-z\d]/.test(checkString)) {
-            alert("Please enter only letter and numeric characters");
+        $letter = /^[a-zA-Z0-9_]+$/;
+        var num=document.getElementById("location").value;  
+        if (!isNaN(num)) {    
+            alert("Location name can't be only numeric value !");
             document.getElementById("location").focus();
-            return (false);
-        }
-    }
+            return false;  
+        } else if (!(num.match($letter))) {
+            alert("Special character are not allowed !");
+            return false;
+        } 
+        else {  
+            return true;  
+        }  
+
     }        
 </script>
 

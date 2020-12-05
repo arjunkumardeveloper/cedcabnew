@@ -39,6 +39,7 @@ $data = $Location->fetchLocationAvai($Dbconn->conn);
                         <div class="card-body">
                             <h5 class="card-title">Your everyday travel partner</h5>
                             <h6>AC Cabs for point to point travel</h6>
+                            <p id="luggError"></p>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="pickup">PICKUP</label>

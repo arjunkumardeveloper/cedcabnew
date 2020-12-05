@@ -1,11 +1,18 @@
-
+if ( window.history.replaceState ) {
+    window.history.replaceState( null, null, window.location.href );
+}
 function cabType() {
     var cab = document.getElementById('cab').value;
     if (cab == "cedmicro") {
         document.getElementById('luggage').style.display = 'none';
         document.getElementById('lugg').value = '';
+        // alert('Luggage is not allow in cedmirco');
+        $('#luggError').html('Luggage is not allow in cedmirco !');
+        $('#luggError').css('color', 'red');
+        $('#luggError').css('display', 'block');
     } else {
         document.getElementById('luggage').style.display = 'flex';
+        $('#luggError').css('display', 'none');
     }
 }
 function checkNum() {
@@ -42,10 +49,7 @@ $(document).ready(function() {
         var cab = document.getElementById('cab').value;
         var lugg = document.getElementById('lugg').value;
         // alert(lugg.length);
-        // if (lugg.length < 4) {
-        //     alert("You can't take more than thousand weight !");
-        //     return false;
-        // }
+        
         // alert(pickup, drop, cab, lugg);
         if (pickup == "") {
             alert("Pickup field is mandatory");
@@ -61,33 +65,48 @@ $(document).ready(function() {
             return false;
         } else {
            // console.log(pickup, drop, cab, lugg);
-           $.ajax({
-                url : 'calculate.php',
-                type : 'POST',
-                data : {
-                    pickup : pickup,
-                    drop : drop, 
-                    cab : cab, 
-                    lugg : lugg,
-                    submit: true
-                },
-                dataType : 'json',
-                success : function(result) {
-                    
-                    if (result) {
-                        
-                        console.log(result);
-                        document.getElementById('msg-body').innerHTML = "Total Distance: " + result['distance'] + "KM <br> Total Fare: " + result['price'] + "/- <br> Pickup Location: " + result['pickup'] + "<br> Drop Location: " + result['drop'] + "<br> Cab Type: " + result['cab'] + "<br> Luggage: " + result['lugg'] + " KG";
 
+            if (lugg.length < 4) {
+                
+                $.ajax({
+                    url : 'calculate.php',
+                    type : 'POST',
+                    data : {
+                        pickup : pickup,
+                        drop : drop, 
+                        cab : cab, 
+                        lugg : lugg,
+                        submit: true
+                    },
+                    dataType : 'json',
+                    success : function(result) {
                         
+                        if (result) {
+                            
+                            console.log(result);
+
+                            if (result['lugg'] == "") {
+                                lugg = 'No luggage';
+                            } else {
+                                lugg = result['lugg'] + " KG";
+                            }
+
+                            document.getElementById('msg-body').innerHTML = "Total Distance: " + result['distance'] + "KM <br> Total Fare: " + result['price'] + "/- <br> Pickup Location: " + result['pickup'] + "<br> Drop Location: " + result['drop'] + "<br> Cab Type: " + result['cab'] + "<br> Luggage: " + lugg;
+                            
+                            
+                        }
+                        // console.log(result['price']);
+                    },
+                    error: function(error) {
+                        alert('error');
+                        // console.log()
                     }
-                    // console.log(result['price']);
-                },
-                error: function(error) {
-                    alert('error');
-                    // console.log()
-                }
-           });
+                });
+            } else {
+                alert("You can't take more than thousand kg weight !");
+                return false;
+            }
+
         }
     });
     

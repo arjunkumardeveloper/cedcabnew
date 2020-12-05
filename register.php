@@ -32,12 +32,25 @@ if (isset($_POST['submit'])) {
     $pass = trim($_POST['pass']);
     $repass = trim($_POST['repass']);
 
-    $User = new User();
-    $Dbconn = new DbConnection();
-    if ($pass == $repass) {   
-        $insert = $User->registration($user_name, $name, $tdate, $mobile, $pass, $Dbconn->conn);
+    if ($user_name == "") {
+        $insert = "Username is required !"; 
+    } else if ($name == "") {
+        $insert = "Name is required !";
+    } else if ($mobile == "") {
+        $insert = "Mobile is required !";
+    } else if ($pass == "") {
+        $insert = "Password is required !";
+    } else if ($repass == "") {
+        $insert = "Re Password is required !";
     } else {
-        $insert = "<p class='text-danger'>Password should be same!</p>";
+        
+        $User = new User();
+        $Dbconn = new DbConnection();
+        if ($pass == $repass) {   
+            $insert = $User->registration($user_name, $name, $tdate, $mobile, $pass, $Dbconn->conn);
+        } else {
+            $insert = "<p class='text-danger'>Password should be same!</p>";
+        }
     }
     // echo $insert;
 
@@ -92,6 +105,7 @@ if (isset($_POST['submit'])) {
 
 <script>
     function validate(){  
+
         var num=document.getElementById("mobile").value;  
         if (isNaN(num)){    
             alert("You can enter only numeric value in mobile number field !");
@@ -99,7 +113,8 @@ if (isset($_POST['submit'])) {
             return false;  
         } else {  
             return true;  
-        }  
+        }
+        
     } 
 </script>
 </body>

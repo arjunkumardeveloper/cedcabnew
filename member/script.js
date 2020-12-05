@@ -1,3 +1,6 @@
+if ( window.history.replaceState ) {
+    window.history.replaceState( null, null, window.location.href );
+}
 function concancle()
 {
     var arjun = confirm('Are you sure want to Cancel this ride..?'); 
@@ -10,9 +13,12 @@ function concancle()
 $(document).ready(function() {
     $('#submit').click(function() {
         // alert('click');
-        var oldpass = $('#oldPass').val();
-        var newpass = $('#newPass').val();
-        var connewpass = $('#conNewPass').val();
+        var oldpas = $('#oldPass').val();
+        oldpass = oldpas.trim();
+        var newpas = $('#newPass').val();
+        newpass = newpas.trim();
+        var connew = $('#conNewPass').val();
+        connewpass = connew.trim();
 
         
         if (oldpass == "") {
@@ -27,7 +33,7 @@ $(document).ready(function() {
         } else if (oldpass === newpass) {
             alert('Old password and new password could not be same !');
             return false;
-        }
+        } 
 
         // console.log(oldpass, newpass, connewpass);
         if (newpass == connewpass) {
